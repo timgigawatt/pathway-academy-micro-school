@@ -1,0 +1,32 @@
+---
+interface Props {
+  block: {
+    headingLines?: { text: string }[] | null
+    text?: string | null
+    ctaLabel?: string | null
+    ctaHref?: string | null
+  }
+}
+
+const { block } = Astro.props
+---
+
+<section class="relative py-20">
+  <div class="absolute inset-2 rounded-3xl bg-linear-115 from-brand-600 from-20% via-sky-soft via-60% to-steel"></div>
+  <div class="relative mx-auto max-w-3xl px-6 text-center">
+    <h2 class="text-4xl font-medium tracking-tight text-gray-950 sm:text-5xl">
+      {block.headingLines?.map((line) => <span class="block">{line.text}</span>)}
+    </h2>
+    {block.text && <p class="mx-auto mt-6 max-w-xl text-xl text-gray-950/75">{block.text}</p>}
+    {
+      block.ctaLabel && block.ctaHref && (
+        <a
+          href={block.ctaHref}
+          class="mt-10 inline-flex items-center justify-center rounded-full bg-gray-950 px-8 py-3 text-base font-medium text-white transition-colors hover:bg-gray-800"
+        >
+          {block.ctaLabel}
+        </a>
+      )
+    }
+  </div>
+</section>

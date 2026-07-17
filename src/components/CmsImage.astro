@@ -1,0 +1,29 @@
+---
+/**
+ * Renders a CMS media document. Remote (CMS/GCS) images go through
+ * astro:assets so the deployed site serves optimized local copies; repo-local
+ * fixture paths fall back to a plain <img>.
+ */
+import { Image } from 'astro:assets'
+import { mediaUrl, type Media } from '../lib/payload'
+
+interface Props {
+  media: Media | null | undefined
+  class?: string
+  loading?: 'lazy' | 'eager'
+}
+
+const { media, class: className, loading = 'lazy' } = Astro.props
+const src = mediaUrl(media)
+const isRemote = src ? /^https?:\/\//.test(src) : false
+---
+
+{
+  src && isRemote && media?.width && media?.height ? (
+    <Image src={src} alt={media?.alt ?? ''} width={media.width} height={media.height} class={className} loading={loading} />
+  ) : src && isRemote ? (
+    <Image src={src} alt={media?.alt ?? ''} inferSize class={className} loading={loading} />
+  ) : src ? (
+    <img src={src} alt={media?.alt ?? ''} class={className} loading={loading} />
+  ) : null
+}

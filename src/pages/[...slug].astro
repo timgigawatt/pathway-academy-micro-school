@@ -1,0 +1,26 @@
+---
+import BlockRenderer from '../components/BlockRenderer.astro'
+import ContactForm from '../components/ContactForm.astro'
+import Base from '../layouts/Base.astro'
+import { getPages, type Page } from '../lib/payload'
+
+export async function getStaticPaths() {
+  const pages = await getPages()
+  return pages.map((page) => ({
+    // The CMS uses slug "home" for the homepage; everything else maps 1:1.
+    params: { slug: page.slug === 'home' ? undefined : page.slug },
+    props: { page },
+  }))
+}
+
+interface Props {
+  page: Page
+}
+
+const { page } = Astro.props
+---
+
+<Base title={page.slug === 'home' ? undefined : page.title}>
+  <BlockRenderer blocks={page.layout} />
+  {page.slug === 'contact' && <ContactForm />}
+</Base>

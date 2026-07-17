@@ -1,0 +1,22 @@
+---
+interface Props {
+  block: {
+    stats?: { num: string; label: string }[] | null
+  }
+}
+
+const { block } = Astro.props
+---
+
+<section class="bg-brand-600 py-12">
+  <div class="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-6 text-center sm:grid-cols-3">
+    {
+      block.stats?.map((stat) => (
+        <div>
+          <p class="text-4xl font-semibold text-white">{stat.num}</p>
+          <p class="mt-2 text-brand-100">{stat.label}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

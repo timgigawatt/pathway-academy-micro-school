@@ -1,0 +1,43 @@
+---
+import type { Block } from '../lib/payload'
+import CtaBand from './blocks/CtaBand.astro'
+import Faq from './blocks/Faq.astro'
+import Gallery from './blocks/Gallery.astro'
+import Hero from './blocks/Hero.astro'
+import RichText from './blocks/RichText.astro'
+import ServicesPreview from './blocks/ServicesPreview.astro'
+import StatsBand from './blocks/StatsBand.astro'
+import Testimonials from './blocks/Testimonials.astro'
+
+interface Props {
+  blocks: Block[] | null | undefined
+}
+
+const { blocks } = Astro.props
+
+// Unknown block types (added for other tenants) render nothing.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const components: Record<string, ((props: any) => unknown) | undefined> = {
+  hero: Hero,
+  richText: RichText,
+  statsBand: StatsBand,
+  servicesPreview: ServicesPreview,
+  faq: Faq,
+  testimonials: Testimonials,
+  ctaBand: CtaBand,
+  gallery: Gallery,
+}
+
+for (const block of blocks ?? []) {
+  if (!components[block.blockType]) {
+    console.warn(`[blocks] no component for blockType "${block.blockType}" — skipping`)
+  }
+}
+---
+
+{
+  (blocks ?? []).map((block) => {
+    const Component = components[block.blockType]
+    return Component ? <Component block={block as never} /> : null
+  })
+}

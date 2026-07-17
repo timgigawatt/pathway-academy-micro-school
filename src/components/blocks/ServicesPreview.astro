@@ -1,0 +1,45 @@
+---
+interface Props {
+  block: {
+    heading: string
+    linkLabel?: string | null
+    linkHref?: string | null
+    items?: { title: string; description?: string | null; href?: string | null }[] | null
+  }
+}
+
+const { block } = Astro.props
+---
+
+<section class="bg-gray-50 py-16">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="mb-10 flex items-end justify-between">
+      <h2 class="text-3xl font-medium text-gray-900">{block.heading}</h2>
+      {
+        block.linkLabel && block.linkHref && (
+          <a href={block.linkHref} class="font-medium text-brand-600 hover:text-brand-800">
+            {block.linkLabel}
+          </a>
+        )
+      }
+    </div>
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+      {
+        block.items?.map((item) => (
+          <div class="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-900/5">
+            <h3 class="text-xl font-semibold text-gray-900">
+              {item.href ? (
+                <a href={item.href} class="hover:text-brand-700">
+                  {item.title}
+                </a>
+              ) : (
+                item.title
+              )}
+            </h3>
+            {item.description && <p class="mt-3 text-gray-600">{item.description}</p>}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

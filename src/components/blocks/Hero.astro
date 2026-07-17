@@ -1,0 +1,64 @@
+---
+interface Button {
+  label: string
+  href: string
+  style?: string | null
+}
+
+interface Props {
+  block: {
+    eyebrow?: string | null
+    headline: string
+    body?: string | null
+    buttons?: Button[] | null
+  }
+}
+
+const { block } = Astro.props
+---
+
+<section class="relative">
+  <div
+    class="absolute inset-2 bottom-0 rounded-3xl bg-linear-115 from-brand-600 from-20% via-sky-soft via-60% to-steel ring-1 ring-black/5 ring-inset sm:bg-linear-145"
+  >
+  </div>
+
+  <div class="relative px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl py-24 text-center sm:py-32 lg:max-w-4xl">
+      <div class="rounded-3xl bg-white/60 p-8 backdrop-blur-xl sm:p-14">
+        {
+          block.eyebrow && (
+            <p class="mb-6 font-mono text-sm font-semibold tracking-widest text-brand-700">{block.eyebrow}</p>
+          )
+        }
+        <h1 class="text-5xl font-medium tracking-tight text-balance text-gray-950 sm:text-7xl">
+          {block.headline}
+        </h1>
+        {
+          block.body && (
+            <p class="mx-auto mt-8 max-w-lg text-xl/7 font-medium text-gray-950/75 sm:text-2xl/8">{block.body}</p>
+          )
+        }
+        {
+          block.buttons?.length ? (
+            <div class="mt-12 flex flex-col justify-center gap-x-6 gap-y-4 sm:flex-row">
+              {block.buttons.map((btn) => (
+                <a
+                  href={btn.href}
+                  class:list={[
+                    'inline-flex items-center justify-center rounded-full px-6 py-2.5 text-base font-medium transition-colors',
+                    btn.style === 'accent'
+                      ? 'bg-gray-950 text-white hover:bg-gray-800'
+                      : 'bg-white/40 text-gray-950 ring-1 ring-gray-950/10 hover:bg-white/60',
+                  ]}
+                >
+                  {btn.label}
+                </a>
+              ))}
+            </div>
+          ) : null
+        }
+      </div>
+    </div>
+  </div>
+</section>

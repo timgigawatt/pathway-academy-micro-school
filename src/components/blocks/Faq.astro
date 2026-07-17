@@ -1,0 +1,29 @@
+---
+interface Props {
+  block: {
+    heading?: string | null
+    items?: { question: string; answer: string }[] | null
+  }
+}
+
+const { block } = Astro.props
+---
+
+<section class="py-16">
+  <div class="mx-auto max-w-3xl px-6">
+    {block.heading && <h2 class="mb-8 text-3xl font-medium text-gray-900">{block.heading}</h2>}
+    <div class="divide-y divide-gray-200">
+      {
+        block.items?.map((item) => (
+          <details class="group py-4">
+            <summary class="flex cursor-pointer list-none items-center justify-between text-lg font-medium text-gray-900">
+              {item.question}
+              <span class="ml-4 text-brand-600 transition-transform group-open:rotate-45">+</span>
+            </summary>
+            <p class="mt-3 text-gray-600">{item.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

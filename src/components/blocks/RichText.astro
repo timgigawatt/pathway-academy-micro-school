@@ -1,0 +1,42 @@
+---
+import CmsImage from '../CmsImage.astro'
+import type { Media } from '../../lib/payload'
+
+interface Props {
+  block: {
+    heading?: string | null
+    body: string
+    image?: Media | null
+    imagePosition?: 'left' | 'right' | null
+  }
+}
+
+const { block } = Astro.props
+const paragraphs = block.body.split(/\n\s*\n/).filter(Boolean)
+const hasImage = Boolean(block.image)
+---
+
+<section class="py-16">
+  <div class="mx-auto max-w-5xl px-6">
+    <div
+      class:list={[
+        'flex flex-col items-center gap-12',
+        hasImage && (block.imagePosition === 'right' ? 'md:flex-row-reverse' : 'md:flex-row'),
+      ]}
+    >
+      {
+        hasImage && (
+          <div class="w-full shrink-0 md:w-96">
+            <div class="aspect-square overflow-hidden rounded-2xl bg-white shadow-xl">
+              <CmsImage media={block.image} class="h-full w-full object-cover" />
+            </div>
+          </div>
+        )
+      }
+      <div class:list={['flex flex-col justify-center', !hasImage && 'mx-auto max-w-3xl']}>
+        {block.heading && <h2 class="mb-6 text-3xl font-medium text-gray-900">{block.heading}</h2>}
+        {paragraphs.map((p) => <p class="mb-5 text-lg leading-relaxed text-gray-700 last:mb-0">{p}</p>)}
+      </div>
+    </div>
+  </div>
+</section>

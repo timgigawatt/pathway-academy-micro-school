@@ -1,0 +1,54 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Pathway Academy palette — teal brand pulled from the original site. */
+  --color-brand-50: #effaf9;
+  --color-brand-100: #d7f0ee;
+  --color-brand-200: #b3e1de;
+  --color-brand-300: #81cbc7;
+  --color-brand-400: #4fadaa;
+  --color-brand-500: #349290;
+  --color-brand-600: #238380;
+  --color-brand-700: #1f6a68;
+  --color-brand-800: #1d5554;
+  --color-brand-900: #1c4747;
+  --color-brand-950: #0a2929;
+  --color-sky-soft: #87ceeb;
+  --color-steel: #4682b4;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prose styling for CMS-generated post HTML. */
+.post-body {
+  @apply text-lg leading-relaxed text-gray-700;
+}
+.post-body h2 {
+  @apply mt-10 mb-4 text-2xl font-semibold text-gray-900;
+}
+.post-body h3 {
+  @apply mt-8 mb-3 text-xl font-semibold text-gray-900;
+}
+.post-body p {
+  @apply my-5;
+}
+.post-body a {
+  @apply text-brand-600 underline hover:text-brand-800;
+}
+.post-body ul {
+  @apply my-5 list-disc pl-6;
+}
+.post-body ol {
+  @apply my-5 list-decimal pl-6;
+}
+.post-body li {
+  @apply my-1;
+}
+.post-body blockquote {
+  @apply my-6 border-l-4 border-brand-200 pl-4 italic text-gray-600;
+}
+.post-body img {
+  @apply my-6 rounded-xl;
+}

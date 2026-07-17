@@ -1,0 +1,32 @@
+---
+interface Props {
+  block: {
+    heading?: string | null
+    items?: { quote: string; name: string; role?: string | null; draft?: boolean | null }[] | null
+  }
+}
+
+const { block } = Astro.props
+const published = block.items?.filter((item) => !item.draft) ?? []
+---
+
+{
+  published.length > 0 && (
+    <section class="bg-gray-50 py-16">
+      <div class="mx-auto max-w-6xl px-6">
+        {block.heading && <h2 class="mb-10 text-3xl font-medium text-gray-900">{block.heading}</h2>}
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {published.map((item) => (
+            <figure class="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-900/5">
+              <blockquote class="text-gray-700">“{item.quote}”</blockquote>
+              <figcaption class="mt-4 font-medium text-gray-900">
+                {item.name}
+                {item.role && <span class="font-normal text-gray-500"> · {item.role}</span>}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

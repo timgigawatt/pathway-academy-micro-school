@@ -1,0 +1,82 @@
+---
+// Netlify Forms — detected at build time from the static HTML.
+---
+
+<section class="pb-24">
+  <div class="mx-auto max-w-xl px-6">
+    <form
+      name="contact"
+      method="POST"
+      action="/thank-you"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      class="space-y-6"
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <p class="hidden">
+        <label>Don't fill this out: <input name="bot-field" /></label>
+      </p>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div>
+          <label for="firstName" class="block text-sm font-medium text-gray-900">First name</label>
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            required
+            class="mt-2 block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-brand-600 focus:ring-inset"
+          />
+        </div>
+        <div>
+          <label for="lastName" class="block text-sm font-medium text-gray-900">Last name</label>
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            required
+            class="mt-2 block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-brand-600 focus:ring-inset"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-900">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          required
+          class="mt-2 block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-brand-600 focus:ring-inset"
+        />
+      </div>
+
+      <div>
+        <label for="phone" class="block text-sm font-medium text-gray-900">Phone <span class="text-gray-400">(optional)</span></label>
+        <input
+          type="tel"
+          name="phone"
+          id="phone"
+          class="mt-2 block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-brand-600 focus:ring-inset"
+        />
+      </div>
+
+      <div>
+        <label for="message" class="block text-sm font-medium text-gray-900">Message</label>
+        <textarea
+          name="message"
+          id="message"
+          rows="5"
+          required
+          class="mt-2 block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-brand-600 focus:ring-inset"></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full rounded-full bg-brand-600 px-6 py-3 text-base font-medium text-white transition-colors hover:bg-brand-700"
+      >
+        Send Message
+      </button>
+    </form>
+  </div>
+</section>

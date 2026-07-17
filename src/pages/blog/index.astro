@@ -1,0 +1,42 @@
+---
+import CmsImage from '../../components/CmsImage.astro'
+import Base from '../../layouts/Base.astro'
+import { getPosts } from '../../lib/payload'
+
+const posts = await getPosts()
+
+const formatDate = (iso: string | null | undefined) =>
+  iso
+    ? new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })
+    : null
+---
+
+<Base title="Blog">
+  <div class="mx-auto max-w-6xl px-6 py-16">
+    <h1 class="mb-12 text-4xl font-medium text-gray-900">Blog</h1>
+
+    {posts.length === 0 && <p class="text-gray-600">No posts yet — check back soon!</p>}
+
+    <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+      {
+        posts.map((post) => (
+          <a href={`/blog/${post.slug}`} class="group">
+            <article>
+              {post.coverImage && (
+                <div class="mb-4 aspect-[3/2] overflow-hidden rounded-2xl bg-gray-100">
+                  <CmsImage
+                    media={post.coverImage}
+                    class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+              )}
+              {formatDate(post.publishedAt) && <p class="text-sm text-gray-500">{formatDate(post.publishedAt)}</p>}
+              <h2 class="mt-1 text-xl font-semibold text-gray-900 group-hover:text-brand-700">{post.title}</h2>
+              {post.excerpt && <p class="mt-2 text-gray-600">{post.excerpt}</p>}
+            </article>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Base>

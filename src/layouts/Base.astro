@@ -1,0 +1,36 @@
+---
+import '../styles/global.css'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { getFooter, getNavigation, getSeoSettings, pageTitle } from '../lib/payload'
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const { title, description } = Astro.props
+const [nav, footer, seo] = await Promise.all([getNavigation(), getFooter(), getSeoSettings()])
+const fullTitle = pageTitle(title, seo)
+const metaDescription = description ?? seo?.defaultDescription ?? ''
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    {metaDescription && <meta name="description" content={metaDescription} />}
+    <meta property="og:title" content={fullTitle} />
+    {metaDescription && <meta property="og:description" content={metaDescription} />}
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body class="min-h-screen bg-white font-sans text-gray-900 antialiased">
+    <Header nav={nav} />
+    <main>
+      <slot />
+    </main>
+    <Footer footer={footer} />
+  </body>
+</html>

@@ -1,0 +1,77 @@
+---
+import CmsImage from '../CmsImage.astro'
+import { mediaUrl, type Media } from '../../lib/payload'
+
+interface Props {
+  block: {
+    heading?: string | null
+    layout?: 'grid' | 'masonry' | null
+    images?: { image: Media; caption?: string | null }[] | null
+  }
+}
+
+const { block } = Astro.props
+const images = block.images ?? []
+const masonry = block.layout === 'masonry'
+---
+
+<section class="py-16">
+  <div class="mx-auto max-w-6xl px-6">
+    {block.heading && <h2 class="mb-10 text-3xl font-medium text-gray-900">{block.heading}</h2>}
+    <div
+      class:list={[
+        masonry ? 'columns-1 gap-4 sm:columns-2 lg:columns-3' : 'grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3',
+      ]}
+    >
+      {
+        images.map((item) => (
+          <button
+            type="button"
+            class:list={[
+              'gallery-item group w-full cursor-zoom-in overflow-hidden rounded-xl',
+              masonry && 'mb-4 break-inside-avoid',
+            ]}
+            data-full={mediaUrl(item.image)}
+            data-caption={item.caption ?? item.image?.alt ?? ''}
+          >
+            <CmsImage
+              media={item.image}
+              class:list={[
+                'w-full transition-transform duration-300 group-hover:scale-105',
+                !masonry && 'aspect-square object-cover',
+              ]}
+            />
+            {item.caption && <span class="mt-1 block text-left text-sm text-gray-500">{item.caption}</span>}
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<dialog id="lightbox" class="m-auto max-h-[90vh] max-w-[90vw] rounded-xl bg-transparent p-0 backdrop:bg-gray-950/80">
+  <button type="button" id="lightbox-close" class="absolute top-2 right-2 rounded-full bg-white/90 px-3 py-1 text-sm font-medium">
+    Close
+  </button>
+  <img id="lightbox-img" src="" alt="" class="max-h-[85vh] w-auto rounded-xl" />
+  <p id="lightbox-caption" class="mt-2 text-center text-sm text-white"></p>
+</dialog>
+
+<script>
+  const lightbox = document.getElementById('lightbox') as HTMLDialogElement | null
+  const img = document.getElementById('lightbox-img') as HTMLImageElement | null
+  const caption = document.getElementById('lightbox-caption')
+  document.querySelectorAll<HTMLButtonElement>('.gallery-item').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (!lightbox || !img) return
+      img.src = btn.dataset.full ?? ''
+      img.alt = btn.dataset.caption ?? ''
+      if (caption) caption.textContent = btn.dataset.caption ?? ''
+      lightbox.showModal()
+    })
+  })
+  document.getElementById('lightbox-close')?.addEventListener('click', () => lightbox?.close())
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) lightbox.close()
+  })
+</script>
