@@ -1,18 +1,46 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Pathway Academy palette — teal brand pulled from the original site. */
+  /* Pathway Academy design system — from the "Site redesign update" Claude
+     Design project (Home.dc.html). Fredoka for display, Nunito for body. */
+  --font-sans: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Fredoka', var(--font-sans);
+
+  /* Teal brand. */
   --color-brand-50: #effaf9;
-  --color-brand-100: #d7f0ee;
-  --color-brand-200: #b3e1de;
+  --color-brand-100: #ddf0ee;
+  --color-brand-200: #9bd8cf;
   --color-brand-300: #81cbc7;
   --color-brand-400: #4fadaa;
   --color-brand-500: #349290;
-  --color-brand-600: #238380;
-  --color-brand-700: #1f6a68;
-  --color-brand-800: #1d5554;
+  --color-brand-600: #218581;
+  --color-brand-700: #1a6964;
+  --color-brand-800: #17605c;
   --color-brand-900: #1c4747;
   --color-brand-950: #0a2929;
+
+  /* Warm neutrals + ink. */
+  --color-cream: #fcf7ef;
+  --color-sand: #f4e9d7;
+  --color-sand-line: #eae2d3;
+  --color-ink: #1e3a38;
+  --color-ink-soft: #4a5553;
+  --color-mist: #9bb8b3;
+
+  /* Accents. */
+  --color-coral-100: #fbe3de;
+  --color-coral-500: #e8604c;
+  --color-coral-600: #d5533f;
+  --color-coral-700: #bf4636;
+  --color-sun-100: #fcebd2;
+  --color-sun-400: #f4a83d;
+  --color-sun-600: #e1922b;
+  --color-sun-800: #a86a15;
+  --color-lagoon-100: #dff0f4;
+  --color-lagoon-400: #77cdda;
+  --color-lagoon-600: #3d9db2;
+
+  /* Legacy gradient stops (pre-redesign blocks). */
   --color-sky-soft: #87ceeb;
   --color-steel: #4682b4;
 }

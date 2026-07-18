@@ -9,69 +9,65 @@ const { footer } = Astro.props
 const contact = footer?.contact
 ---
 
-<footer class="bg-slate-100 py-12">
-  <div class="mx-auto max-w-6xl px-6">
-    <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+<footer class="bg-ink px-6 pt-14 pb-10 lg:px-12">
+  <div class="mx-auto max-w-[1400px]">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div>
+        <div class="mb-4 flex items-center gap-3">
+          <img src="/images/hero.png" alt="Pathway Academy" class="h-12 w-auto" />
+          <span class="font-display text-lg font-medium text-cream">Pathway Academy</span>
+        </div>
+        <p class="max-w-[340px] text-[15px] leading-relaxed text-mist">
+          A Christ-centered K–6 micro school in Overland Park, Kansas.
+        </p>
+      </div>
+
       {
         contact && (
           <div>
-            <h3 class="mb-4 text-xl font-medium">Contact</h3>
-            <div class="space-y-2 text-gray-700">
+            <h3 class="mb-4 font-display text-base font-medium text-cream">Contact</h3>
+            <div class="flex flex-col gap-2 text-[15px] text-mist">
               {contact.phone && (
-                <p>
-                  <a href={`tel:${contact.phone.replace(/[^+\d]/g, '')}`} class="hover:text-brand-700">
-                    {contact.phone}
-                  </a>
-                </p>
+                <a href={`tel:${contact.phone.replace(/[^+\d]/g, '')}`} class="text-mist hover:text-white">
+                  {contact.phone}
+                </a>
               )}
-              {contact.address && contact.address.split('\n').map((line) => <p>{line}</p>)}
               {contact.email && (
-                <p>
-                  <a href={`mailto:${contact.email}`} class="hover:text-brand-700">
-                    {contact.email}
-                  </a>
-                </p>
+                <a href={`mailto:${contact.email}`} class="text-mist hover:text-white">
+                  {contact.email}
+                </a>
               )}
+              {contact.address && contact.address.split('\n').map((line) => <span>{line}</span>)}
             </div>
           </div>
         )
       }
 
       {
-        footer?.social?.length ? (
+        footer?.columns?.map((col, i) => (
           <div>
-            <h3 class="mb-4 text-xl font-medium">Follow Us</h3>
-            <div class="flex gap-4">
-              {footer.social.map((s) => (
-                <a href={s.href} class="text-gray-700 hover:text-brand-700" rel="noopener">
-                  {s.platform}
+            {col.heading && <h3 class="mb-4 font-display text-base font-medium text-cream">{col.heading}</h3>}
+            <div class="flex flex-col gap-2 text-[15px]">
+              {col.links?.map((link) => (
+                <a href={link.href} class="text-mist hover:text-white">
+                  {link.label}
                 </a>
               ))}
-            </div>
-          </div>
-        ) : null
-      }
-
-      {
-        footer?.columns?.map((col) => (
-          <div>
-            {col.heading && <h3 class="mb-4 text-xl font-medium">{col.heading}</h3>}
-            <ul class="space-y-2">
-              {col.links?.map((link) => (
-                <li>
-                  <a href={link.href} class="text-gray-700 hover:text-brand-700">
-                    {link.label}
+              {/* Social profiles ride along in the last link column. */}
+              {i === (footer?.columns?.length ?? 0) - 1 &&
+                footer?.social?.map((s) => (
+                  <a href={s.href} class="text-mist hover:text-white" rel="noopener">
+                    {s.platform}
                   </a>
-                </li>
-              ))}
-            </ul>
+                ))}
+            </div>
           </div>
         ))
       }
     </div>
 
-    <div class="mt-12 border-t border-gray-300 pt-6 text-center text-gray-600">
-      <p>{footer?.copyright ?? '© Pathway Academy. All Rights Reserved.'}</p>
+    <div class="mt-10 border-t border-white/10 pt-6 text-center">
+      <p class="text-sm text-mist/80">{footer?.copyright ?? '© Pathway Academy. All Rights Reserved.'}</p>
     </div>
   </div>
 </footer>

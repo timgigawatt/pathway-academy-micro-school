@@ -1,0 +1,453 @@
+---
+/**
+ * Home page — implements Home.dc.html from the "Site redesign update" Claude
+ * Design project. The layout is code-owned (not CMS blocks); the gallery
+ * strip and social-card photos are pulled from the CMS gallery page, and
+ * contact details come from the footer global.
+ */
+import Base from '../layouts/Base.astro'
+import CmsImage from '../components/CmsImage.astro'
+import { getFooter, getPages, type Media } from '../lib/payload'
+
+const [pages, footer] = await Promise.all([getPages(), getFooter()])
+
+const galleryBlock = pages
+  .find((p) => p.slug === 'gallery')
+  ?.layout?.find((b) => b.blockType === 'gallery') as
+  | { images?: { image: Media; caption?: string | null }[] | null }
+  | undefined
+const galleryImages = (galleryBlock?.images ?? []).map((item) => item.image).filter(Boolean)
+
+const stripPhotos = galleryImages.slice(0, 6)
+const facebookUrl =
+  footer?.social?.find((s) => /facebook/i.test(s.platform))?.href ??
+  'https://www.facebook.com/profile.php?id=61562003723548'
+
+const contact = footer?.contact
+const addressLine = contact?.address
+  ?.split('\n')
+  .filter((line) => line.trim() && line.trim() !== 'Pathway Academy')
+  .join(', ')
+
+const socialPosts = [
+  {
+    date: 'June 12',
+    text: "What a wonderful week of learning and discovery! Our students explored God's creation up close.",
+  },
+  {
+    date: 'May 28',
+    text: 'Celebrating another year of growth at Pathway Academy. So proud of every one of our students!',
+  },
+  {
+    date: 'May 14',
+    text: 'Hands-on math and reading in our small classroom — every child gets the attention they need.',
+  },
+].map((post, i) => ({ ...post, image: galleryImages[i % Math.max(galleryImages.length, 1)] }))
+
+const features = [
+  {
+    title: 'K–6 Education',
+    text: 'Strong academic foundations for kindergarten through 6th grade.',
+    tile: 'bg-brand-100',
+    stroke: '#218581',
+    paths: ['M22 10v6M2 10l10-5 10 5-10 5z', 'M6 12v5c3 3 9 3 12 0v-5'],
+  },
+  {
+    title: 'Personalized Learning',
+    text: "Instruction tailored to each child's learning style and pace.",
+    tile: 'bg-coral-100',
+    stroke: '#E8604C',
+    paths: [
+      'M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.51 4.04 3 5.5l7 7Z',
+    ],
+  },
+  {
+    title: 'Small Class Sizes',
+    text: 'An intimate environment where every child gets real attention.',
+    tile: 'bg-sun-100',
+    stroke: '#E1922B',
+    paths: [
+      'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2',
+      'M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0',
+      'M22 21v-2a4 4 0 0 0-3-3.87',
+      'M16 3.13a4 4 0 0 1 0 7.75',
+    ],
+  },
+  {
+    title: 'Faith Based',
+    text: 'Biblical principles woven into academic excellence.',
+    tile: 'bg-lagoon-100',
+    stroke: '#3D9DB2',
+    paths: ['M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z', 'M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'],
+  },
+]
+---
+
+<Base>
+  <!-- Hero -->
+  <div
+    class="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 px-6 pt-10 pb-16 lg:grid-cols-[1.1fr_1fr] lg:px-16 lg:pt-14 lg:pb-20"
+  >
+    <div>
+      <span
+        class="inline-flex items-center gap-2 rounded-full bg-sand px-4 py-2 text-[13px] font-extrabold tracking-[0.06em] text-ink uppercase"
+      >
+        K–6 · Christ-Centered · Overland Park, KS
+      </span>
+      <h1
+        class="mt-6 font-display text-5xl leading-[1.04] font-semibold text-balance text-ink sm:text-6xl lg:text-[68px]"
+      >
+        Small school.<br /><span class="text-brand-600">Big</span>
+        <span class="text-coral-500">impact.</span>
+      </h1>
+      <p class="mt-6 max-w-[480px] text-lg leading-relaxed text-ink-soft sm:text-xl">
+        A safe, nurturing micro school where every child is known by name — and learning is built around how
+        <em>your</em> child learns best.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center gap-4">
+        <a
+          href="#contact"
+          class="inline-flex items-center rounded-full bg-coral-500 px-7 py-4 text-[17px] font-extrabold text-white shadow-[0_3px_0_var(--color-coral-700)] transition-colors hover:bg-coral-600"
+        >
+          Schedule a Visit
+        </a>
+        <a
+          href="#mission"
+          class="inline-flex items-center rounded-full px-7 py-4 text-[17px] font-extrabold text-ink shadow-[inset_0_0_0_2px_var(--color-ink)] transition-colors hover:bg-sand"
+        >
+          Our Mission
+        </a>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-6">
+        <div class="flex items-center gap-2 text-[15px] font-bold text-ink-soft">
+          <span class="size-2.5 rounded-full bg-brand-600"></span>4 days a week
+        </div>
+        <div class="flex items-center gap-2 text-[15px] font-bold text-ink-soft">
+          <span class="size-2.5 rounded-full bg-sun-400"></span>Small class sizes
+        </div>
+        <div class="flex items-center gap-2 text-[15px] font-bold text-ink-soft">
+          <span class="size-2.5 rounded-full bg-coral-500"></span>20+ yrs experience
+        </div>
+      </div>
+    </div>
+    <div class="relative flex justify-center">
+      <div class="absolute top-6 right-3 size-[88px] rounded-full bg-sun-400/90"></div>
+      <div class="absolute bottom-[-8px] left-2 size-14 rounded-full bg-lagoon-400"></div>
+      <div
+        class="relative h-[420px] w-[320px] overflow-hidden rounded-[999px_999px_28px_28px] border-8 border-white shadow-[0_24px_48px_rgba(30,58,56,0.22)] sm:h-[520px] sm:w-[420px]"
+      >
+        <img
+          src="/images/mission.jpg"
+          alt="Students learning at Pathway Academy"
+          class="h-full w-full object-cover"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="mx-auto max-w-[1400px] px-6 pb-18 lg:px-16">
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        features.map((f) => (
+          <div class="rounded-3xl bg-white px-6 py-7 shadow-[0_4px_16px_rgba(30,58,56,0.08)]">
+            <div class:list={['mb-4 flex size-[52px] items-center justify-center rounded-2xl', f.tile]}>
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke={f.stroke}
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                {f.paths.map((d) => (
+                  <path d={d} />
+                ))}
+              </svg>
+            </div>
+            <h3 class="mb-2 font-display text-[19px] font-medium text-ink">{f.title}</h3>
+            <p class="text-[15px] leading-normal text-ink-soft">{f.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Mission -->
+  <section id="mission" class="scroll-mt-24 bg-brand-600 px-6 py-20 lg:px-16">
+    <div class="mx-auto max-w-[880px] text-center">
+      <span class="text-[13px] font-extrabold tracking-[0.14em] text-brand-200 uppercase">Our Mission</span>
+      <p class="mt-6 font-display text-2xl leading-[1.4] font-medium text-balance text-white sm:text-[34px]">
+        To teach students from a Christian worldview in a safe, stress-free environment — focusing on each student's
+        learning style and needs as they develop a love for learning and, by God's grace, a love for their Creator.
+      </p>
+      <div class="mt-7 flex justify-center gap-2.5">
+        <span class="size-3 rounded-full bg-sun-400"></span>
+        <span class="size-3 rounded-full bg-coral-500"></span>
+        <span class="size-3 rounded-full bg-lagoon-400"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet Sally -->
+  <section
+    id="about"
+    class="mx-auto grid max-w-[1400px] scroll-mt-24 grid-cols-1 items-center gap-14 px-6 py-20 lg:grid-cols-[340px_1fr] lg:px-16"
+  >
+    <div class="relative justify-self-center">
+      <div class="absolute -inset-3.5 rounded-full bg-sand"></div>
+      <img
+        src="/images/sally.jpeg"
+        alt="Sally, founder and teacher"
+        class="relative size-[280px] rounded-full border-8 border-white object-cover shadow-[0_16px_32px_rgba(30,58,56,0.18)]"
+      />
+      <span
+        class="absolute right-0 bottom-0 rounded-full bg-sun-400 px-4 py-2 text-sm font-extrabold text-ink shadow-[0_4px_12px_rgba(30,58,56,0.2)]"
+      >
+        20+ years teaching
+      </span>
+    </div>
+    <div>
+      <h2 class="font-display text-3xl font-semibold text-ink sm:text-[40px]">Meet Sally</h2>
+      <p class="mt-5 text-lg leading-relaxed text-ink-soft">
+        I'm a retired kindergarten teacher with over 20 years in Classical Christian Education. My passion is creating
+        a nurturing place where each child can discover their God-given potential.
+      </p>
+      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+        Pathway Academy runs 4 days a week for kindergarten through 4th grade — individualized attention,
+        Christ-centered learning, and strong foundations in both academics and character.
+      </p>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <span class="rounded-full bg-brand-100 px-4.5 py-2.5 text-sm font-extrabold text-brand-800">
+          Classical Education
+        </span>
+        <span class="rounded-full bg-coral-100 px-4.5 py-2.5 text-sm font-extrabold text-coral-700">
+          Nurturing Environment
+        </span>
+        <span class="rounded-full bg-sun-100 px-4.5 py-2.5 text-sm font-extrabold text-sun-800">KDG–4th Grade</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery strip -->
+  {
+    stripPhotos.length > 0 && (
+      <section id="gallery" class="scroll-mt-24 overflow-hidden bg-sand pt-18 pb-20">
+        <div class="mx-auto mb-9 flex max-w-[1400px] flex-wrap items-end justify-between gap-4 px-6 lg:px-16">
+          <h2 class="font-display text-3xl font-semibold text-ink sm:text-[40px]">Life at Pathway</h2>
+          <a href="/gallery" class="font-extrabold text-brand-600 hover:text-brand-800">
+            See the full gallery →
+          </a>
+        </div>
+        <div class="flex gap-6 overflow-x-auto px-6 py-3 lg:px-16">
+          {stripPhotos.map((photo, i) => (
+            <div
+              class:list={[
+                'h-[300px] w-[260px] flex-none overflow-hidden rounded-3xl border-6 border-white shadow-[0_10px_24px_rgba(30,58,56,0.15)]',
+                i % 2 === 0 ? '-rotate-2' : 'rotate-[1.5deg]',
+              ]}
+            >
+              <CmsImage media={photo} class="h-full w-full object-cover" />
+            </div>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Connect with us -->
+  <section id="social" class="mx-auto max-w-[1400px] px-6 py-20 lg:px-16">
+    <div class="mb-9 flex flex-wrap items-end justify-between gap-4">
+      <h2 class="font-display text-3xl font-semibold text-ink sm:text-[40px]">Connect with us</h2>
+      <a
+        href={facebookUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 font-extrabold text-brand-600 hover:text-brand-800"
+      >
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            fill-rule="evenodd"
+            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+            clip-rule="evenodd"></path>
+        </svg>
+        Follow on Facebook →
+      </a>
+    </div>
+    <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+      {
+        socialPosts.map((post) => (
+          <div class="rounded-3xl bg-white p-5 shadow-[0_4px_16px_rgba(30,58,56,0.08)]">
+            <div class="flex items-center gap-2.5 pb-3">
+              <img src="/images/hero.png" alt="Pathway Academy" class="size-10 rounded-full bg-sand object-cover" />
+              <span class="flex flex-col">
+                <span class="text-sm font-extrabold text-ink">Pathway Academy</span>
+                <span class="text-xs font-semibold text-ink-soft/70">{post.date}</span>
+              </span>
+            </div>
+            <p class="mb-3 text-[15px] leading-normal text-ink-soft">{post.text}</p>
+            {post.image && (
+              <div class="aspect-4/3 overflow-hidden rounded-2xl bg-sand">
+                <CmsImage media={post.image} class="h-full w-full object-cover" />
+              </div>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="scroll-mt-24 bg-white px-6 py-20 lg:px-16">
+    <div class="mx-auto grid max-w-[1400px] grid-cols-1 items-start gap-14 lg:grid-cols-2">
+      <div>
+        <h2 class="font-display text-3xl font-semibold text-balance text-ink sm:text-[40px]">
+          Come see the school for yourself
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-ink-soft">
+          Questions about programs or admissions? Want to schedule a visit? We'd love to hear from you.
+        </p>
+        <div class="mt-8 flex flex-col gap-4">
+          {
+            contact?.phone && (
+              <div class="flex items-center gap-3.5">
+                <span class="flex size-11 flex-none items-center justify-center rounded-[14px] bg-brand-100">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#218581"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                </span>
+                <a
+                  href={`tel:${contact.phone.replace(/[^+\d]/g, '')}`}
+                  class="text-[17px] font-bold text-ink hover:text-brand-600"
+                >
+                  {contact.phone}
+                </a>
+              </div>
+            )
+          }
+          {
+            contact?.email && (
+              <div class="flex items-center gap-3.5">
+                <span class="flex size-11 flex-none items-center justify-center rounded-[14px] bg-coral-100">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#E8604C"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                </span>
+                <a href={`mailto:${contact.email}`} class="text-[17px] font-bold text-ink hover:text-brand-600">
+                  {contact.email}
+                </a>
+              </div>
+            )
+          }
+          {
+            addressLine && (
+              <div class="flex items-center gap-3.5">
+                <span class="flex size-11 flex-none items-center justify-center rounded-[14px] bg-sun-100">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#E1922B"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+                    <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+                    <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+                    <path d="M10 6h4" />
+                  </svg>
+                </span>
+                <span class="text-[17px] font-bold text-ink">{addressLine}</span>
+              </div>
+            )
+          }
+        </div>
+      </div>
+
+      <form
+        name="contact"
+        method="POST"
+        action="/thank-you"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        class="rounded-[28px] bg-cream p-6 shadow-[0_12px_32px_rgba(30,58,56,0.10)] sm:p-9"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="hidden">
+          <label>Don't fill this out: <input name="bot-field" /></label>
+        </p>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <input
+            type="text"
+            name="firstName"
+            required
+            placeholder="First name"
+            aria-label="First name"
+            class="rounded-[14px] border-2 border-sand-line bg-white px-4 py-3.5 text-[15px] text-ink placeholder:text-ink-soft/60 focus:border-brand-600 focus:outline-none"
+          />
+          <input
+            type="text"
+            name="lastName"
+            required
+            placeholder="Last name"
+            aria-label="Last name"
+            class="rounded-[14px] border-2 border-sand-line bg-white px-4 py-3.5 text-[15px] text-ink placeholder:text-ink-soft/60 focus:border-brand-600 focus:outline-none"
+          />
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="Email"
+            aria-label="Email"
+            class="rounded-[14px] border-2 border-sand-line bg-white px-4 py-3.5 text-[15px] text-ink placeholder:text-ink-soft/60 focus:border-brand-600 focus:outline-none sm:col-span-2"
+          />
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone (optional)"
+            aria-label="Phone (optional)"
+            class="rounded-[14px] border-2 border-sand-line bg-white px-4 py-3.5 text-[15px] text-ink placeholder:text-ink-soft/60 focus:border-brand-600 focus:outline-none sm:col-span-2"
+          />
+          <textarea
+            name="message"
+            rows="4"
+            required
+            placeholder="How can we help?"
+            aria-label="How can we help?"
+            class="resize-y rounded-[14px] border-2 border-sand-line bg-white px-4 py-3.5 text-[15px] text-ink placeholder:text-ink-soft/60 focus:border-brand-600 focus:outline-none sm:col-span-2"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="mt-5 w-full rounded-full bg-brand-600 py-4 text-[17px] font-extrabold text-white shadow-[0_3px_0_var(--color-brand-800)] transition-colors hover:bg-brand-700"
+        >
+          Send Message
+        </button>
+      </form>
+    </div>
+  </section>
+</Base>

@@ -6,11 +6,14 @@ import { getPages, type Page } from '../lib/payload'
 
 export async function getStaticPaths() {
   const pages = await getPages()
-  return pages.map((page) => ({
-    // The CMS uses slug "home" for the homepage; everything else maps 1:1.
-    params: { slug: page.slug === 'home' ? undefined : page.slug },
-    props: { page },
-  }))
+  // The homepage is code-owned (src/pages/index.astro, from the Home.dc.html
+  // design); a CMS "home" page, if one still exists, is ignored.
+  return pages
+    .filter((page) => page.slug !== 'home')
+    .map((page) => ({
+      params: { slug: page.slug },
+      props: { page },
+    }))
 }
 
 interface Props {
@@ -20,7 +23,7 @@ interface Props {
 const { page } = Astro.props
 ---
 
-<Base title={page.slug === 'home' ? undefined : page.title}>
+<Base title={page.title}>
   <BlockRenderer blocks={page.layout} />
   {page.slug === 'contact' && <ContactForm />}
 </Base>

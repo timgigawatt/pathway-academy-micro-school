@@ -13,70 +13,10 @@ export const images = {
   sally: { file: 'public/images/sally.jpeg', alt: "Sally's portrait" },
 }
 
+// Note: the homepage is code-owned (src/pages/index.astro implements the
+// Home.dc.html design) and is intentionally absent here — a CMS "home" page,
+// if one still exists from an earlier seed, is ignored by routing.
 export const pages = [
-  {
-    title: 'Home',
-    slug: 'home',
-    layout: [
-      {
-        blockType: 'hero',
-        eyebrow: 'MICRO SCHOOL · KDG–4TH GRADE',
-        headline: 'Small School, Big Impact',
-        body: 'Transforming Lives Through Christ-Centered Education in a Safe and Nurturing Environment',
-        buttons: [
-          { label: 'Reach Out', href: '/contact', style: 'accent' },
-          { label: 'Read Our Blog', href: '/blog' },
-        ],
-      },
-      {
-        blockType: 'richText',
-        heading: 'Our Mission',
-        body: "To teach students from a Christian worldview in a safe and stress-free learning environment, focusing on each student's learning style and needs, as they develop a love for learning and by God's Grace a love for their creator.",
-        image: 'mission',
-        imagePosition: 'left',
-      },
-      {
-        blockType: 'statsBand',
-        stats: [
-          { num: '20+', label: 'Years of teaching experience' },
-          { num: 'KDG–4th', label: 'Grades served' },
-          { num: '4 days', label: 'A week school program' },
-        ],
-      },
-      {
-        blockType: 'richText',
-        heading: 'Meet Sally',
-        body: 'I am a retired Kindergarten teacher with over 20 years of experience in Classical Christian Education. My passion is creating a nurturing environment where each child can discover their God-given potential.\n\nI offer a 4-day-a-week school program for KDG–4th grade, focusing on individualized attention and Christ-centered learning that helps students build strong academic foundations while developing their character.',
-        image: 'sally',
-        imagePosition: 'right',
-      },
-      {
-        blockType: 'servicesPreview',
-        heading: 'What Makes Pathway Different',
-        items: [
-          {
-            title: 'Classical Christian Education',
-            description: 'Time-tested methods that build strong academic foundations from a Christian worldview.',
-          },
-          {
-            title: 'Individualized Attention',
-            description: "A micro school by design — each student's learning style and needs shape how they're taught.",
-          },
-          {
-            title: 'Nurturing Environment',
-            description: 'A safe, stress-free place where children develop a love for learning.',
-          },
-        ],
-      },
-      {
-        blockType: 'ctaBand',
-        headingLines: [{ text: 'Come Walk the' }, { text: 'Pathway With Us' }],
-        text: 'Schedule a visit or ask us anything — we would love to meet your family.',
-        ctaLabel: 'Get in Touch',
-        ctaHref: '/contact',
-      },
-    ],
-  },
   {
     title: 'About',
     slug: 'about',
@@ -120,11 +60,10 @@ export const pages = [
 
 export const navigation = {
   items: [
-    { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
+    { label: 'Our Mission', href: '/#mission' },
+    { label: 'Meet Sally', href: '/#about' },
     { label: 'Gallery', href: '/gallery' },
     { label: 'Blog', href: '/blog' },
-    { label: 'Contact', href: '/contact' },
   ],
 }
 
@@ -133,10 +72,10 @@ export const footer = {
     {
       heading: 'Quick Links',
       links: [
-        { label: 'About', href: '/about' },
+        { label: 'Our Mission', href: '/#mission' },
+        { label: 'Meet Sally', href: '/#about' },
         { label: 'Gallery', href: '/gallery' },
         { label: 'Blog', href: '/blog' },
-        { label: 'Contact', href: '/contact' },
       ],
     },
   ],

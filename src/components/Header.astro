@@ -7,14 +7,18 @@ interface Props {
 
 const { nav } = Astro.props
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/'
-const isActive = (href: string) => (href === '/' ? currentPath === '/' : currentPath.startsWith(href))
+const isActive = (href: string) =>
+  href.includes('#') ? false : href === '/' ? currentPath === '/' : currentPath.startsWith(href)
 ---
 
-<header class="sticky top-0 z-40 border-b border-gray-100 bg-white/90 backdrop-blur">
-  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+<header class="sticky top-0 z-40 bg-cream/90 backdrop-blur">
+  <div class="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 lg:px-12">
     <a href="/" class="flex items-center gap-3">
-      <img src="/images/logo.png" alt="Pathway Academy" class="h-12 w-auto" />
-      <span class="hidden text-sm font-semibold tracking-wide text-brand-600 sm:block">MICRO SCHOOL</span>
+      <img src="/images/hero.png" alt="Pathway Academy" class="h-14 w-auto" />
+      <span class="flex flex-col">
+        <span class="font-display text-[19px] leading-tight font-semibold text-ink">Pathway Academy</span>
+        <span class="text-xs font-extrabold tracking-[0.08em] text-coral-500 uppercase">Micro School</span>
+      </span>
     </a>
 
     <nav class="hidden items-center gap-1 lg:flex" aria-label="Main">
@@ -23,8 +27,8 @@ const isActive = (href: string) => (href === '/' ? currentPath === '/' : current
           <a
             href={item.href}
             class:list={[
-              'rounded-lg px-4 py-2 text-base font-medium transition-colors hover:bg-gray-100',
-              isActive(item.href) ? 'text-brand-700' : 'text-gray-900',
+              'rounded-full px-3.5 py-2.5 text-[15px] font-bold transition-colors hover:bg-sand',
+              isActive(item.href) ? 'text-brand-600' : 'text-ink',
             ]}
           >
             {item.label}
@@ -32,16 +36,16 @@ const isActive = (href: string) => (href === '/' ? currentPath === '/' : current
         ))
       }
       <a
-        href="/contact"
-        class="ml-3 rounded-full bg-brand-600 px-4 py-2 text-base font-medium text-white transition-colors hover:bg-brand-700"
+        href="/#contact"
+        class="ml-3 rounded-full bg-brand-600 px-5 py-3 text-[15px] font-extrabold text-white shadow-[0_2px_0_var(--color-brand-800)] transition-colors hover:bg-brand-700"
       >
-        Get in Touch
+        Come Visit Us
       </a>
     </nav>
 
     <button
       id="menu-open"
-      class="flex size-12 items-center justify-center rounded-lg hover:bg-black/5 lg:hidden"
+      class="flex size-12 items-center justify-center rounded-full text-ink hover:bg-sand lg:hidden"
       aria-label="Open main menu"
       aria-expanded="false"
       aria-controls="mobile-menu"
@@ -55,11 +59,11 @@ const isActive = (href: string) => (href === '/' ? currentPath === '/' : current
   </div>
 
   <div id="mobile-menu" class="fixed inset-0 z-50 hidden lg:hidden">
-    <div id="menu-backdrop" class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm"></div>
-    <div class="fixed inset-y-0 right-0 w-full max-w-sm bg-white px-6 py-6 shadow-lg">
+    <div id="menu-backdrop" class="fixed inset-0 bg-ink/50 backdrop-blur-sm"></div>
+    <div class="fixed inset-y-0 right-0 w-full max-w-sm bg-cream px-6 py-6 shadow-lg">
       <div class="mb-8 flex items-center justify-between">
-        <img src="/images/logo.png" alt="Pathway Academy" class="h-12 w-auto" />
-        <button id="menu-close" class="rounded-lg p-2 hover:bg-gray-100" aria-label="Close menu">
+        <img src="/images/hero.png" alt="Pathway Academy" class="h-12 w-auto" />
+        <button id="menu-close" class="rounded-full p-2 text-ink hover:bg-sand" aria-label="Close menu">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="size-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
           </svg>
@@ -68,18 +72,18 @@ const isActive = (href: string) => (href === '/' ? currentPath === '/' : current
       <nav class="flex flex-col gap-2" aria-label="Mobile">
         {
           nav.map((item) => (
-            <a href={item.href} class="rounded-lg px-4 py-3 text-base font-medium text-gray-900 hover:bg-gray-100">
+            <a href={item.href} class="rounded-full px-4 py-3 text-base font-bold text-ink hover:bg-sand">
               {item.label}
             </a>
           ))
         }
       </nav>
-      <div class="mt-8 border-t border-gray-200 pt-8">
+      <div class="mt-8 border-t border-sand-line pt-8">
         <a
-          href="/contact"
-          class="flex items-center justify-center rounded-lg bg-brand-600 px-4 py-2 font-medium text-white hover:bg-brand-700"
+          href="/#contact"
+          class="flex items-center justify-center rounded-full bg-brand-600 px-4 py-3 font-extrabold text-white shadow-[0_2px_0_var(--color-brand-800)] hover:bg-brand-700"
         >
-          Get in Touch
+          Come Visit Us
         </a>
       </div>
     </div>
@@ -97,4 +101,6 @@ const isActive = (href: string) => (href === '/' ? currentPath === '/' : current
   openBtn?.addEventListener('click', () => setOpen(true))
   document.getElementById('menu-close')?.addEventListener('click', () => setOpen(false))
   document.getElementById('menu-backdrop')?.addEventListener('click', () => setOpen(false))
+  // Close the menu when a same-page anchor link is tapped.
+  menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)))
 </script>
