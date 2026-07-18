@@ -4,7 +4,21 @@
  * upserts, and never sending a `tenant` field (the server assigns ours).
  */
 import { readFile } from 'node:fs/promises'
-import { basename } from 'node:path'
+import { basename, extname } from 'node:path'
+
+const MIME_BY_EXT = {
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.png': 'image/png',
+  '.gif': 'image/gif',
+  '.webp': 'image/webp',
+  '.avif': 'image/avif',
+  '.svg': 'image/svg+xml',
+}
+
+export function mimeTypeFor(filename) {
+  return MIME_BY_EXT[extname(filename).toLowerCase()] ?? 'application/octet-stream'
+}
 
 const CMS_URL = process.env.CMS_URL?.replace(/\/$/, '')
 const BASE = `${CMS_URL}/api`
@@ -54,7 +68,9 @@ export async function upsertMedia(buffer, filename, alt) {
     return found.docs[0].id
   }
   const form = new FormData()
-  form.append('file', new Blob([buffer]), filename)
+  // The Blob type matters: Payload only extracts image dimensions when the
+  // uploaded part carries an image/* content type.
+  form.append('file', new Blob([buffer], { type: mimeTypeFor(filename) }), filename)
   form.append('_payload', JSON.stringify({ alt }))
   const res = await fetch(`${BASE}/media`, {
     method: 'POST',
