@@ -1,42 +1,43 @@
 ---
 /**
- * Renders a CMS media document. Remote (CMS/GCS) images go through
- * astro:assets so the deployed site serves optimized local copies; repo-local
- * fixture paths fall back to a plain <img>.
+ * Renders a CMS media document as a plain <img>.
  *
- * Media docs normally carry width/height. When they don't, we probe the
- * remote file ourselves — and if that fails (bad metadata, odd encoding), we
- * degrade to a plain <img> with a build warning instead of failing the whole
- * deploy the way <Image inferSize> would.
+ * The CMS pre-generates responsive variants at upload (thumb/card/full webp),
+ * so we hand-build a srcset and the site build does no image processing at
+ * all. Docs without sizes (SVGs, originals ≤400px wide, uploads predating
+ * imageSizes) serve the original file directly.
+ *
+ * Deliberately never uses astro:assets for CMS media: build-time fetch and
+ * cache revalidation against the CMS stalls minutes per image (its file
+ * endpoint redirects), and it re-encodes the whole gallery on cold CI caches.
  */
-import { Image, inferRemoteSize } from 'astro:assets'
-import { mediaUrl, type Media } from '../lib/payload'
+import { mediaSrcset, mediaUrl, type Media } from '../lib/payload'
 
 interface Props {
   media: Media | null | undefined
   class?: string
   loading?: 'lazy' | 'eager'
+  /** Rendered-width hint for the srcset; tune per layout slot. */
+  sizes?: string
 }
 
-const { media, class: className, loading = 'lazy' } = Astro.props
+const { media, class: className, loading = 'lazy', sizes = '(min-width: 768px) 33vw, 100vw' } = Astro.props
 const src = mediaUrl(media)
-const isRemote = src ? /^https?:\/\//.test(src) : false
-
-let width = media?.width ?? null
-let height = media?.height ?? null
-if (src && isRemote && (!width || !height)) {
-  try {
-    ;({ width, height } = await inferRemoteSize(src))
-  } catch {
-    console.warn(`[CmsImage] could not determine dimensions for ${src} — serving unoptimized`)
-  }
-}
+const srcset = mediaSrcset(media)
 ---
 
 {
-  src && isRemote && width && height ? (
-    <Image src={src} alt={media?.alt ?? ''} width={width} height={height} class={className} loading={loading} />
-  ) : src ? (
-    <img src={src} alt={media?.alt ?? ''} class={className} loading={loading} />
+  src ? (
+    <img
+      src={src}
+      srcset={srcset ?? undefined}
+      sizes={srcset ? sizes : undefined}
+      alt={media?.alt ?? ''}
+      width={media?.width ?? undefined}
+      height={media?.height ?? undefined}
+      class={className}
+      loading={loading}
+      decoding="async"
+    />
   ) : null
 }

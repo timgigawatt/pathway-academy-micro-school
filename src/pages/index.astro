@@ -250,7 +250,7 @@ const features = [
                 i % 2 === 0 ? '-rotate-2' : 'rotate-[1.5deg]',
               ]}
             >
-              <CmsImage media={photo} class="h-full w-full object-cover" />
+              <CmsImage media={photo} sizes="260px" class="h-full w-full object-cover" />
             </div>
           ))}
         </div>
@@ -291,7 +291,7 @@ const features = [
             <p class="mb-3 text-[15px] leading-normal text-ink-soft">{post.text}</p>
             {post.image && (
               <div class="aspect-4/3 overflow-hidden rounded-2xl bg-sand">
-                <CmsImage media={post.image} class="h-full w-full object-cover" />
+                <CmsImage media={post.image} sizes="(min-width: 768px) 430px, 100vw" class="h-full w-full object-cover" />
               </div>
             )}
           </div>
