@@ -1,0 +1,16 @@
+name: daily-build
+
+# 6:00 am America/Chicago (11:00 UTC during CDT; 12:00 UTC would be CST — the hour of
+# drift twice a year is acceptable). Rebuilds production so entries whose pubDate has
+# arrived are published. Without this, "publish Monday" silently means "publish now".
+on:
+  schedule:
+    - cron: '0 11 * * *'
+  workflow_dispatch:
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify production build
+        run: curl -fsS -X POST -d '{}' "${{ secrets.NETLIFY_BUILD_HOOK }}"

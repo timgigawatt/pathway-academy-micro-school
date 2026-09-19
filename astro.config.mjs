@@ -2,14 +2,9 @@
 import { defineConfig } from 'astro/config'
 import tailwindcss from '@tailwindcss/vite'
 
+// Content is files in src/content/ (see src/lib/payload.ts); media in public/media/.
 export default defineConfig({
+  site: 'https://pathway-academy.netlify.app',
   output: 'static',
   vite: { plugins: [tailwindcss()] },
-  image: {
-    // CMS media lives on GCS in production, or is served through the CMS itself.
-    remotePatterns: [
-      { protocol: 'https', hostname: 'storage.googleapis.com' },
-      { protocol: 'https', hostname: '**.hosted.app' },
-    ],
-  },
 })

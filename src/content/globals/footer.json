@@ -1,0 +1,45 @@
+{
+  "columns": [
+    {
+      "heading": "Quick Links",
+      "links": [
+        {
+          "label": "About",
+          "href": "/about",
+          "id": "6a5aa7a50f1c6d0001ebea38"
+        },
+        {
+          "label": "Gallery",
+          "href": "/gallery",
+          "id": "6a5aa7a50f1c6d0001ebea39"
+        },
+        {
+          "label": "Blog",
+          "href": "/blog",
+          "id": "6a5aa7a50f1c6d0001ebea3a"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact",
+          "id": "6a5aa7a50f1c6d0001ebea3b"
+        }
+      ],
+      "id": "6a5aa7a50f1c6d0001ebea3c"
+    }
+  ],
+  "social": [
+    {
+      "platform": "Facebook",
+      "href": "https://www.facebook.com/profile.php?id=61562003723548",
+      "id": "6a5aa7a50f1c6d0001ebea3d"
+    }
+  ],
+  "legal": [],
+  "contact": {
+    "phone": "913-645-0650",
+    "email": "sdodd.kc@gmail.com",
+    "address": "Pathway Academy\n13825 Hemlock St\nOverland Park, KS 66223"
+  },
+  "copyright": "© Pathway Academy. All Rights Reserved.",
+  "id": "6a9c29b134de8d6e62758b96"
+}
