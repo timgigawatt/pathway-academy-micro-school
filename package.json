@@ -8,8 +8,9 @@
     "build": "astro build && node scripts/check-dist.mjs",
     "preview": "astro preview",
     "check": "astro check",
-    "seed": "node scripts/seed-content.mjs",
-    "migrate": "node scripts/migrate-firebase.mjs"
+    "context": "node scripts/context.mjs",
+    "validate": "node scripts/validate.mjs",
+    "prepare": "git config core.hooksPath .githooks 2>/dev/null || true"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.0",

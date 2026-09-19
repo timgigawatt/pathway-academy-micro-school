@@ -1,0 +1,6 @@
+#!/bin/sh
+# Regenerate _context/structure.md so it can never drift from the content it describes.
+# Installed by `npm run prepare` (core.hooksPath = .githooks).
+set -e
+npm run --silent context
+git add _context/structure.md

@@ -1,0 +1,112 @@
+{
+  "title": "About",
+  "type": "generic",
+  "slug": "about",
+  "publishedAt": null,
+  "hero": {
+    "eyebrow": null,
+    "headline": null,
+    "body": null,
+    "buttons": []
+  },
+  "stats": [],
+  "serviceRows": [],
+  "caseStudies": [],
+  "layout": [
+    {
+      "blockType": "richText",
+      "eyebrow": null,
+      "heading": "Meet Sally",
+      "body": "I am a retired Kindergarten teacher with over 20 years of experience in Classical Christian Education. My passion is creating a nurturing environment where each child can discover their God-given potential.\n\nI offer a 4-day-a-week school program for KDG–4th grade, focusing on individualized attention and Christ-centered learning that helps students build strong academic foundations while developing their character.",
+      "image": {
+        "alt": "Sally's portrait",
+        "url": "/media/sally-1.webp",
+        "filename": "sally-1.webp",
+        "mimeType": "image/webp",
+        "width": 1600,
+        "height": 2400,
+        "sizes": {
+          "thumb": {
+            "url": "/media/sally-1-400x601.webp",
+            "width": 400,
+            "height": 601,
+            "mimeType": "image/webp",
+            "filesize": 40854,
+            "filename": "sally-1-400x601.webp"
+          },
+          "card": {
+            "url": "/media/sally-1-800x1200.webp",
+            "width": 800,
+            "height": 1200,
+            "mimeType": "image/webp",
+            "filesize": 130152,
+            "filename": "sally-1-800x1200.webp"
+          },
+          "full": {
+            "url": "/media/sally-1.webp",
+            "width": 1600,
+            "height": 2400,
+            "mimeType": "image/webp",
+            "filename": "sally-1.webp"
+          }
+        },
+        "id": "6a9c29b134de8d6e62758ba7"
+      },
+      "imagePosition": "left",
+      "buttons": [],
+      "id": "6a5aa7a00f1c6d0001ebea2f",
+      "blockName": null
+    },
+    {
+      "blockType": "richText",
+      "eyebrow": null,
+      "heading": "Our Mission",
+      "body": "To teach students from a Christian worldview in a safe and stress-free learning environment, focusing on each student's learning style and needs, as they develop a love for learning and by God's Grace a love for their creator.",
+      "image": {
+        "alt": "Students learning at Pathway Academy",
+        "url": "/media/mission-1.webp",
+        "filename": "mission-1.webp",
+        "mimeType": "image/webp",
+        "width": 1800,
+        "height": 2400,
+        "sizes": {
+          "thumb": {
+            "url": "/media/mission-1-400x533.webp",
+            "width": 400,
+            "height": 533,
+            "mimeType": "image/webp",
+            "filesize": 37740,
+            "filename": "mission-1-400x533.webp"
+          },
+          "card": {
+            "url": "/media/mission-1-800x1067.webp",
+            "width": 800,
+            "height": 1067,
+            "mimeType": "image/webp",
+            "filesize": 118498,
+            "filename": "mission-1-800x1067.webp"
+          },
+          "full": {
+            "url": "/media/mission-1.webp",
+            "width": 1800,
+            "height": 2400,
+            "mimeType": "image/webp",
+            "filename": "mission-1.webp"
+          }
+        },
+        "id": "6a9c29b134de8d6e62758ba6"
+      },
+      "imagePosition": "right",
+      "buttons": [],
+      "id": "6a5aa7a00f1c6d0001ebea30",
+      "blockName": null
+    }
+  ],
+  "seo": {
+    "title": null,
+    "description": null,
+    "image": null,
+    "noindex": null
+  },
+  "id": "6a9c29b134de8d6e62758ab4"
+}

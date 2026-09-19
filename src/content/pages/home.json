@@ -1,0 +1,208 @@
+{
+  "title": "Home",
+  "type": "generic",
+  "slug": "home",
+  "publishedAt": null,
+  "hero": {
+    "eyebrow": null,
+    "headline": null,
+    "body": null,
+    "buttons": []
+  },
+  "stats": [],
+  "serviceRows": [],
+  "caseStudies": [],
+  "layout": [
+    {
+      "blockType": "hero",
+      "eyebrow": "MICRO SCHOOL · KDG–4TH GRADE",
+      "headline": "Small School, Big Impact",
+      "body": "Transforming Lives Through Christ-Centered Education in a Safe and Nurturing Environment",
+      "buttons": [
+        {
+          "label": "Reach Out",
+          "href": "/contact",
+          "style": "accent",
+          "id": "6a5aa79e0f1c6d0001ebea1f"
+        },
+        {
+          "label": "Read Our Blog",
+          "href": "/blog",
+          "style": "accent",
+          "id": "6a5aa79e0f1c6d0001ebea20"
+        }
+      ],
+      "image": null,
+      "variant": "page",
+      "id": "6a5aa79e0f1c6d0001ebea21",
+      "blockName": null
+    },
+    {
+      "blockType": "richText",
+      "eyebrow": null,
+      "heading": "Our Mission",
+      "body": "To teach students from a Christian worldview in a safe and stress-free learning environment, focusing on each student's learning style and needs, as they develop a love for learning and by God's Grace a love for their creator.",
+      "image": {
+        "alt": "Students learning at Pathway Academy",
+        "url": "/media/mission-1.webp",
+        "filename": "mission-1.webp",
+        "mimeType": "image/webp",
+        "width": 1800,
+        "height": 2400,
+        "sizes": {
+          "thumb": {
+            "url": "/media/mission-1-400x533.webp",
+            "width": 400,
+            "height": 533,
+            "mimeType": "image/webp",
+            "filesize": 37740,
+            "filename": "mission-1-400x533.webp"
+          },
+          "card": {
+            "url": "/media/mission-1-800x1067.webp",
+            "width": 800,
+            "height": 1067,
+            "mimeType": "image/webp",
+            "filesize": 118498,
+            "filename": "mission-1-800x1067.webp"
+          },
+          "full": {
+            "url": "/media/mission-1.webp",
+            "width": 1800,
+            "height": 2400,
+            "mimeType": "image/webp",
+            "filename": "mission-1.webp"
+          }
+        },
+        "id": "6a9c29b134de8d6e62758ba6"
+      },
+      "imagePosition": "left",
+      "buttons": [],
+      "id": "6a5aa79e0f1c6d0001ebea22",
+      "blockName": null
+    },
+    {
+      "blockType": "statsBand",
+      "stats": [
+        {
+          "num": "20+",
+          "label": "Years of teaching experience",
+          "id": "6a5aa79e0f1c6d0001ebea23"
+        },
+        {
+          "num": "KDG–4th",
+          "label": "Grades served",
+          "id": "6a5aa79e0f1c6d0001ebea24"
+        },
+        {
+          "num": "4 days",
+          "label": "A week school program",
+          "id": "6a5aa79e0f1c6d0001ebea25"
+        }
+      ],
+      "id": "6a5aa79e0f1c6d0001ebea26",
+      "blockName": null
+    },
+    {
+      "blockType": "richText",
+      "eyebrow": null,
+      "heading": "Meet Sally",
+      "body": "I am a retired Kindergarten teacher with over 20 years of experience in Classical Christian Education. My passion is creating a nurturing environment where each child can discover their God-given potential.\n\nI offer a 4-day-a-week school program for KDG–4th grade, focusing on individualized attention and Christ-centered learning that helps students build strong academic foundations while developing their character.",
+      "image": {
+        "alt": "Sally's portrait",
+        "url": "/media/sally-1.webp",
+        "filename": "sally-1.webp",
+        "mimeType": "image/webp",
+        "width": 1600,
+        "height": 2400,
+        "sizes": {
+          "thumb": {
+            "url": "/media/sally-1-400x601.webp",
+            "width": 400,
+            "height": 601,
+            "mimeType": "image/webp",
+            "filesize": 40854,
+            "filename": "sally-1-400x601.webp"
+          },
+          "card": {
+            "url": "/media/sally-1-800x1200.webp",
+            "width": 800,
+            "height": 1200,
+            "mimeType": "image/webp",
+            "filesize": 130152,
+            "filename": "sally-1-800x1200.webp"
+          },
+          "full": {
+            "url": "/media/sally-1.webp",
+            "width": 1600,
+            "height": 2400,
+            "mimeType": "image/webp",
+            "filename": "sally-1.webp"
+          }
+        },
+        "id": "6a9c29b134de8d6e62758ba7"
+      },
+      "imagePosition": "right",
+      "buttons": [],
+      "id": "6a5aa79e0f1c6d0001ebea27",
+      "blockName": null
+    },
+    {
+      "blockType": "servicesPreview",
+      "heading": "What Makes Pathway Different",
+      "linkLabel": null,
+      "linkHref": null,
+      "items": [
+        {
+          "title": "Classical Christian Education",
+          "description": "Time-tested methods that build strong academic foundations from a Christian worldview.",
+          "href": null,
+          "id": "6a5aa79e0f1c6d0001ebea28"
+        },
+        {
+          "title": "Individualized Attention",
+          "description": "A micro school by design — each student's learning style and needs shape how they're taught.",
+          "href": null,
+          "id": "6a5aa79e0f1c6d0001ebea29"
+        },
+        {
+          "title": "Nurturing Environment",
+          "description": "A safe, stress-free place where children develop a love for learning.",
+          "href": null,
+          "id": "6a5aa79e0f1c6d0001ebea2a"
+        }
+      ],
+      "id": "6a5aa79e0f1c6d0001ebea2b",
+      "blockName": null,
+      "tone": "light"
+    },
+    {
+      "blockType": "ctaBand",
+      "headingLines": [
+        {
+          "text": "Come Walk the",
+          "id": "6a5aa79e0f1c6d0001ebea2c"
+        },
+        {
+          "text": "Pathway With Us",
+          "id": "6a5aa79e0f1c6d0001ebea2d"
+        }
+      ],
+      "text": "Schedule a visit or ask us anything — we would love to meet your family.",
+      "ctaLabel": "Get in Touch",
+      "ctaHref": "/contact",
+      "buttons": [],
+      "tone": "default",
+      "watermark": "none",
+      "id": "6a5aa79e0f1c6d0001ebea2e",
+      "blockName": null
+    }
+  ],
+  "seo": {
+    "title": null,
+    "description": null,
+    "image": null,
+    "noindex": null
+  },
+  "id": "6a9c29b134de8d6e62758ab3"
+}

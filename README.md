@@ -1,9 +1,11 @@
 # Pathway Academy — Micro School Site
 
 Static [Astro](https://astro.build) site for Pathway Academy, deployed on
-Netlify. All content is managed in the Gigawatt CMS (multi-tenant Payload 3)
-under the `pathway-academy` tenant; publishing in the CMS triggers a Netlify
-rebuild via the tenant's build hook.
+Netlify. Content is files in `src/content/` (pages as JSON block layouts, blog posts as
+markdown, globals as JSON — exported from the Gigawatt CMS on 2026-09-18); media in
+`public/media/`. `npm run context` regenerates `_context/structure.md` (also on every
+commit); `npm run validate` checks the content files. A 6am build
+(`.github/workflows/daily-build.yml`) publishes date-gated posts.
 
 Design and plan: [docs/plans/](docs/plans/).
 

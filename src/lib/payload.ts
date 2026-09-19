@@ -1,15 +1,18 @@
 /**
- * Build-time data layer for the Gigawatt CMS (Payload 3 REST API).
+ * Build-time data layer. Content is files in this repo — exported from the
+ * Payload CMS on 2026-09-18 and edited here since:
  *
- * All reads are anonymous: content collections are public-read for published
- * documents, and every query is scoped to the Pathway Academy tenant. A build
- * fails hard on an unreachable CMS or missing content — Netlify then keeps the
- * last good deploy live.
+ *   src/content/pages/<slug>.json          page docs (title, slug, layout[])
+ *   src/content/posts/<slug>.md            blog posts: front-matter + HTML body (src/content.config.ts)
+ *   src/content/globals/{navigation,footer,seo-settings}.json
+ *   public/media/*                         every referenced media file (+ size variants)
  *
- * MOCK_CONTENT=1 builds from local fixtures instead (pre-tenant development).
+ * Types are the CMS doc shapes, unchanged, so every component keeps working.
+ * Production (Netlify CONTEXT=production) hides posts with draft: true or a
+ * future pubDate; branch deploys show them.
  */
 
-import { fixtures } from './fixtures'
+import { getCollection } from 'astro:content'
 
 export const TENANT = 'pathway-academy'
 
@@ -70,69 +73,63 @@ export interface SeoSettings {
   defaultDescription?: string | null
 }
 
-const useMock = process.env.MOCK_CONTENT === '1'
+/* ---- Reading ---- */
 
-function apiBase(): string {
-  const url = process.env.PAYLOAD_URL
-  if (!url) throw new Error('PAYLOAD_URL is not set (or use MOCK_CONTENT=1 for fixture builds)')
-  return `${String(url).replace(/\/$/, '')}/api`
+const files = import.meta.glob<{ default: unknown }>('/src/content/**/*.json', { eager: true })
+
+function docs<T>(collection: string): T[] {
+  const prefix = `/src/content/${collection}/`
+  return Object.entries(files)
+    .filter(([path]) => path.startsWith(prefix))
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([, mod]) => mod.default as T)
 }
 
-async function fetchDocs<T>(collection: string, params: Record<string, string> = {}): Promise<T[]> {
-  const qs = new URLSearchParams({
-    'where[tenant.slug][equals]': TENANT,
-    depth: '2',
-    limit: '100',
-    ...params,
-  })
-  const url = `${apiBase()}/${collection}?${qs}`
-  const res = await fetch(url)
-  if (!res.ok) {
-    throw new Error(`CMS request failed: GET ${url} -> ${res.status} ${await res.text().catch(() => '')}`)
-  }
-  const json = (await res.json()) as { docs?: T[] }
-  return json.docs ?? []
+function global<T>(name: string): T | null {
+  return (files[`/src/content/globals/${name}.json`]?.default as T) ?? null
 }
+
+const isProduction = process.env.CONTEXT === 'production'
 
 export async function getPages(): Promise<Page[]> {
-  if (useMock) return fixtures.pages
-  const pages = await fetchDocs<Page>('pages')
-  if (pages.length === 0) {
-    throw new Error(`CMS returned no published pages for tenant "${TENANT}" — refusing to build an empty site.`)
-  }
+  const pages = docs<Page>('pages')
+  if (pages.length === 0) throw new Error('src/content/pages/ is empty — refusing to build an empty site.')
   return pages
 }
 
+/** Posts, newest first. Production hides drafts and future pubDates. */
 export async function getPosts(): Promise<Post[]> {
-  if (useMock) return fixtures.posts
-  return fetchDocs<Post>('posts', { sort: '-publishedAt' })
-}
-
-async function getSingleton<T>(collection: string): Promise<T | null> {
-  const docs = await fetchDocs<T>(collection, { limit: '1' })
-  return docs[0] ?? null
+  const entries = await getCollection('posts')
+  const now = Date.now()
+  return entries
+    .filter((e: any) => !isProduction || (!e.data.draft && e.data.pubDate.getTime() <= now))
+    .sort((a: any, b: any) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+    .map((e: any): Post => ({
+      id: e.data.cmsId ?? e.id,
+      title: e.data.title,
+      slug: e.id,
+      publishedAt: e.data.pubDate.toISOString(),
+      excerpt: e.data.excerpt ?? null,
+      coverImage: e.data.coverImage ?? null,
+      contentHtml: e.body ?? '',
+    }))
 }
 
 export async function getNavigation(): Promise<NavItem[]> {
-  if (useMock) return fixtures.navigation
-  const doc = await getSingleton<{ items?: NavItem[] }>('navigation')
-  return doc?.items ?? []
+  return global<{ items?: NavItem[] }>('navigation')?.items ?? []
 }
 
 export async function getFooter(): Promise<Footer | null> {
-  if (useMock) return fixtures.footer
-  return getSingleton<Footer>('footer')
+  return global<Footer>('footer')
 }
 
 export async function getSeoSettings(): Promise<SeoSettings | null> {
-  if (useMock) return fixtures.seo
-  return getSingleton<SeoSettings>('seo-settings')
+  return global<SeoSettings>('seo-settings')
 }
 
-/** CMS file URLs are server-relative; make them absolute for the built site. */
+/** Media urls are site-relative (/media/<file>) — served from public/media. */
 function absoluteUrl(url: string): string {
-  if (/^https?:\/\//.test(url) || useMock) return url
-  return `${String(process.env.PAYLOAD_URL).replace(/\/$/, '')}${url}`
+  return url
 }
 
 /** Absolute URL for a media document (local-storage URLs are CMS-relative). */
