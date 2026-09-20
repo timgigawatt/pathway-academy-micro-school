@@ -2363,6 +2363,45 @@
           "videoUrl": null,
           "caption": "Science Fair",
           "id": "6a5aa9ad3adb9e0001befca8"
+        },
+        {
+          "image": {
+            "alt": "Two kids in Kansas City Royals gear at a baseball game, one holding a baseball glove",
+            "url": "/media/gallery-image-20260920-1.webp",
+            "filename": "gallery-image-20260920-1.webp",
+            "mimeType": "image/webp",
+            "width": 240,
+            "height": 320,
+            "sizes": {
+              "thumb": {
+                "url": "/media/gallery-image-20260920-1.webp",
+                "width": 240,
+                "height": 320,
+                "mimeType": "image/webp",
+                "filesize": 19898,
+                "filename": "gallery-image-20260920-1.webp"
+              },
+              "card": {
+                "url": "/media/gallery-image-20260920-1.webp",
+                "width": 240,
+                "height": 320,
+                "mimeType": "image/webp",
+                "filesize": 19898,
+                "filename": "gallery-image-20260920-1.webp"
+              },
+              "full": {
+                "url": "/media/gallery-image-20260920-1.webp",
+                "width": 240,
+                "height": 320,
+                "mimeType": "image/webp",
+                "filename": "gallery-image-20260920-1.webp"
+              }
+            },
+            "id": "2b0aec7631d4e09c53378a72"
+          },
+          "videoUrl": null,
+          "caption": "Two kids in Kansas City Royals gear at a baseball game, one holding a baseball glove",
+          "id": "2323f041de9b8c1633473825"
         }
       ],
       "id": "6a5aa7a20f1c6d0001ebea31",
