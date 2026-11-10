@@ -1,0 +1,76 @@
+---
+/**
+ * "Connect with us" — the newest posts from the school's public Facebook page.
+ * Entries in src/content/social arrive through the Gigawatt site-update pipeline
+ * (source: social, tools/social-post.mjs): one PR per new post, merged by hand.
+ * With no entries yet, the heading and the Follow link still render.
+ */
+import { getCollection } from 'astro:content'
+import CmsImage from './CmsImage.astro'
+
+interface Props {
+  facebookUrl: string
+  limit?: number
+}
+
+const { facebookUrl, limit = 3 } = Astro.props
+
+const posts = (await getCollection('social'))
+  .map((entry) => entry.data)
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .slice(0, limit)
+
+const label = (date: string) =>
+  new Date(`${date}T12:00:00`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+---
+
+<section id="social" class="mx-auto max-w-[1400px] px-6 py-20 lg:px-16">
+  <div class="mb-9 flex flex-wrap items-end justify-between gap-4">
+    <h2 class="font-display text-3xl font-semibold text-ink sm:text-[40px]">Connect with us</h2>
+    <a
+      href={facebookUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 font-extrabold text-brand-600 hover:text-brand-800"
+    >
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          fill-rule="evenodd"
+          d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+          clip-rule="evenodd"></path>
+      </svg>
+      Follow on Facebook →
+    </a>
+  </div>
+  {
+    posts.length > 0 && (
+      <ul class="grid grid-cols-1 gap-5 md:grid-cols-3">
+        {posts.map((post) => (
+          <li class="rounded-3xl bg-white p-5 shadow-[0_4px_16px_rgba(30,58,56,0.08)]">
+            <div class="flex items-center gap-2.5 pb-3">
+              <img src="/images/hero.png" alt="" class="size-10 rounded-full bg-sand object-cover" />
+              <span class="flex flex-col">
+                <span class="text-sm font-extrabold text-ink">Pathway Academy</span>
+                <a
+                  href={post.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-semibold text-ink-soft/70 hover:text-brand-700 hover:underline"
+                >
+                  <time datetime={post.date}>{label(post.date)}</time>
+                  <span class="sr-only"> — view this post on Facebook</span>
+                </a>
+              </span>
+            </div>
+            {post.text && <p class="mb-3 text-[15px] leading-normal whitespace-pre-line text-ink-soft">{post.text}</p>}
+            {post.images[0] && (
+              <div class="aspect-4/3 overflow-hidden rounded-2xl bg-sand">
+                <CmsImage media={post.images[0]} sizes="(min-width: 768px) 430px, 100vw" class="h-full w-full object-cover" />
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</section>
