@@ -7,6 +7,8 @@ interface Props {
 
 const { footer } = Astro.props
 const contact = footer?.contact
+const rawCopyright = footer?.copyright ?? '© Pathway Academy. All Rights Reserved.';
+const copyright = rawCopyright.replace(/^©\s*/, `© ${new Date().getFullYear()} `);
 ---
 
 <footer class="bg-ink px-6 pt-14 pb-10 lg:px-12">
@@ -67,7 +69,9 @@ const contact = footer?.contact
     </div>
 
     <div class="mt-10 border-t border-white/10 pt-6 text-center">
-      <p class="text-sm text-mist/80">{footer?.copyright ?? '© Pathway Academy. All Rights Reserved.'}</p>
+      <p class="text-sm text-mist/80">
+        {copyright} | Powered by <a href="https://www.gigawattlab.com" target="_blank" rel="noopener" class="text-mist hover:text-white">Gigawatt Lab, LLC</a>
+      </p>
     </div>
   </div>
 </footer>
