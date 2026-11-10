@@ -63,8 +63,8 @@
             "url": "/media/IMG-1453.webp",
             "filename": "IMG-1453.webp",
             "mimeType": "image/webp",
-            "width": 1200,
-            "height": 1600,
+            "width": 1050,
+            "height": 1400,
             "sizes": {
               "thumb": {
                 "url": "/media/IMG-1453-400x533.webp",
@@ -84,8 +84,8 @@
               },
               "full": {
                 "url": "/media/IMG-1453.webp",
-                "width": 1200,
-                "height": 1600,
+                "width": 1050,
+                "height": 1400,
                 "mimeType": "image/webp",
                 "filename": "IMG-1453.webp"
               }
