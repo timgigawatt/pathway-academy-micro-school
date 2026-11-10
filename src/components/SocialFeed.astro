@@ -7,13 +7,15 @@
  */
 import { getCollection } from 'astro:content'
 import CmsImage from './CmsImage.astro'
+import { getSettings } from '../lib/payload'
 
 interface Props {
   facebookUrl: string
-  limit?: number
 }
 
-const { facebookUrl, limit = 3 } = Astro.props
+const { facebookUrl } = Astro.props
+// How many posts show: globals/settings.json `social.limit`, 3 when unset.
+const limit = (await getSettings())?.social?.limit ?? 3
 
 const posts = (await getCollection('social'))
   .map((entry) => entry.data)

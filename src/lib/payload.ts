@@ -4,7 +4,7 @@
  *
  *   src/content/pages/<slug>.json          page docs (title, slug, layout[])
  *   src/content/posts/<slug>.md            blog posts: front-matter + HTML body (src/content.config.ts)
- *   src/content/globals/{navigation,footer,seo-settings}.json
+ *   src/content/globals/{navigation,footer,seo-settings,settings}.json
  *   public/media/*                         every referenced media file (+ size variants)
  *
  * Types are the CMS doc shapes, unchanged, so every component keeps working.
@@ -125,6 +125,15 @@ export async function getFooter(): Promise<Footer | null> {
 
 export async function getSeoSettings(): Promise<SeoSettings | null> {
   return global<SeoSettings>('seo-settings')
+}
+
+/** Site options that aren't SEO: `social.limit` = how many posts SocialFeed shows. */
+export interface Settings {
+  social?: { limit?: number | null } | null
+}
+
+export async function getSettings(): Promise<Settings | null> {
+  return global<Settings>('settings')
 }
 
 /** Media urls are site-relative (/media/<file>) — served from public/media. */
