@@ -27,4 +27,19 @@ const posts = defineCollection({
   }),
 });
 
-export const collections = { posts };
+// Social: the school's public Facebook posts, one JSON file each, copied in by the
+// site-update pipeline's social source (docs/plans/2026-11-10-social-sync-design.md
+// in the Gigawatt workspace). Photos live in public/media/social/.
+const social = defineCollection({
+  loader: glob({ pattern: '*.json', base: './src/content/social' }),
+  schema: z.object({
+    platform: z.enum(['facebook', 'instagram']),
+    post_id: z.string(),
+    url: z.string().url(),
+    date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    text: z.string().default(''),
+    images: z.array(media.extend({ id: z.string() })).default([]),
+  }),
+});
+
+export const collections = { posts, social };
