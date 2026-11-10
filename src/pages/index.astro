@@ -137,7 +137,11 @@ const features = [
         class="relative h-[420px] w-[320px] overflow-hidden rounded-[999px_999px_28px_28px] border-8 border-white shadow-[0_24px_48px_rgba(30,58,56,0.22)] sm:h-[520px] sm:w-[420px]"
       >
         <img
-          src="/images/mission.jpg"
+          src="/media/mission-1-800x1067.webp"
+          srcset="/media/mission-1-400x533.webp 400w, /media/mission-1-800x1067.webp 800w"
+          sizes="(min-width: 640px) 420px, 320px"
+          width="800"
+          height="1067"
           alt="Students learning at Pathway Academy"
           class="h-full w-full object-cover"
           loading="eager"
@@ -200,8 +204,14 @@ const features = [
     <div class="relative justify-self-center">
       <div class="absolute -inset-3.5 rounded-full bg-sand"></div>
       <img
-        src="/images/sally.jpeg"
+        src="/media/sally-1-800x1200.webp"
+        srcset="/media/sally-1-400x601.webp 400w, /media/sally-1-800x1200.webp 800w"
+        sizes="280px"
+        width="800"
+        height="1200"
         alt="Sally, founder and teacher"
+        loading="lazy"
+        decoding="async"
         class="relative size-[280px] rounded-full border-8 border-white object-cover shadow-[0_16px_32px_rgba(30,58,56,0.18)]"
       />
       <span

@@ -63,15 +63,15 @@
             "url": "/media/IMG-1453.webp",
             "filename": "IMG-1453.webp",
             "mimeType": "image/webp",
-            "width": 1200,
-            "height": 1600,
+            "width": 1050,
+            "height": 1400,
             "sizes": {
               "thumb": {
                 "url": "/media/IMG-1453-400x533.webp",
                 "width": 400,
                 "height": 533,
                 "mimeType": "image/webp",
-                "filesize": 89714,
+                "filesize": 63038,
                 "filename": "IMG-1453-400x533.webp"
               },
               "card": {
@@ -79,13 +79,13 @@
                 "width": 800,
                 "height": 1067,
                 "mimeType": "image/webp",
-                "filesize": 365030,
+                "filesize": 236568,
                 "filename": "IMG-1453-800x1067.webp"
               },
               "full": {
                 "url": "/media/IMG-1453.webp",
-                "width": 1200,
-                "height": 1600,
+                "width": 1050,
+                "height": 1400,
                 "mimeType": "image/webp",
                 "filename": "IMG-1453.webp"
               }
@@ -110,7 +110,7 @@
                 "width": 400,
                 "height": 533,
                 "mimeType": "image/webp",
-                "filesize": 60734,
+                "filesize": 47866,
                 "filename": "IMG-9441-400x533.webp"
               },
               "card": {
@@ -118,7 +118,7 @@
                 "width": 800,
                 "height": 1067,
                 "mimeType": "image/webp",
-                "filesize": 213560,
+                "filesize": 141882,
                 "filename": "IMG-9441-800x1067.webp"
               },
               "full": {
@@ -235,7 +235,7 @@
                 "width": 800,
                 "height": 1067,
                 "mimeType": "image/webp",
-                "filesize": 162114,
+                "filesize": 136936,
                 "filename": "IMG-7107-800x1067.webp"
               },
               "full": {
@@ -313,7 +313,7 @@
                 "width": 800,
                 "height": 1067,
                 "mimeType": "image/webp",
-                "filesize": 175348,
+                "filesize": 143560,
                 "filename": "IMG-6579-800x1067.webp"
               },
               "full": {
@@ -344,7 +344,7 @@
                 "width": 400,
                 "height": 533,
                 "mimeType": "image/webp",
-                "filesize": 69460,
+                "filesize": 49218,
                 "filename": "IMG-6574-400x533.webp"
               },
               "card": {
@@ -352,7 +352,7 @@
                 "width": 800,
                 "height": 1067,
                 "mimeType": "image/webp",
-                "filesize": 257048,
+                "filesize": 148558,
                 "filename": "IMG-6574-800x1067.webp"
               },
               "full": {
@@ -535,28 +535,27 @@
             "height": 2400,
             "sizes": {
               "thumb": {
-                "url": null,
-                "width": null,
-                "height": null,
-                "mimeType": null,
-                "filesize": null,
-                "filename": null
+                "url": "/media/IMG-7114-400x533.webp",
+                "width": 400,
+                "height": 533,
+                "mimeType": "image/webp",
+                "filesize": 39930,
+                "filename": "IMG-7114-400x533.webp"
               },
               "card": {
-                "url": null,
-                "width": null,
-                "height": null,
-                "mimeType": null,
-                "filesize": null,
-                "filename": null
+                "url": "/media/IMG-7114-800x1067.webp",
+                "width": 800,
+                "height": 1067,
+                "mimeType": "image/webp",
+                "filesize": 125112,
+                "filename": "IMG-7114-800x1067.webp"
               },
               "full": {
-                "url": null,
-                "width": null,
-                "height": null,
-                "mimeType": null,
-                "filesize": null,
-                "filename": null
+                "url": "/media/IMG-7114.webp",
+                "width": 1800,
+                "height": 2400,
+                "mimeType": "image/webp",
+                "filename": "IMG-7114.webp"
               }
             },
             "id": "6a9c29b134de8d6e62758bb5"
@@ -696,7 +695,7 @@
                 "width": 400,
                 "height": 533,
                 "mimeType": "image/webp",
-                "filesize": 66490,
+                "filesize": 49892,
                 "filename": "IMG-8393-400x533.webp"
               },
               "card": {
@@ -704,7 +703,7 @@
                 "width": 800,
                 "height": 1067,
                 "mimeType": "image/webp",
-                "filesize": 245200,
+                "filesize": 152844,
                 "filename": "IMG-8393-800x1067.webp"
               },
               "full": {
@@ -774,7 +773,7 @@
                 "width": 400,
                 "height": 533,
                 "mimeType": "image/webp",
-                "filesize": 60734,
+                "filesize": 47866,
                 "filename": "IMG-9441-400x533.webp"
               },
               "card": {
@@ -782,7 +781,7 @@
                 "width": 800,
                 "height": 1067,
                 "mimeType": "image/webp",
-                "filesize": 213560,
+                "filesize": 141882,
                 "filename": "IMG-9441-800x1067.webp"
               },
               "full": {
@@ -887,28 +886,27 @@
             "height": 2400,
             "sizes": {
               "thumb": {
-                "url": null,
-                "width": null,
-                "height": null,
-                "mimeType": null,
-                "filesize": null,
-                "filename": null
+                "url": "/media/IMG-9628-400x533.webp",
+                "width": 400,
+                "height": 533,
+                "mimeType": "image/webp",
+                "filesize": 40504,
+                "filename": "IMG-9628-400x533.webp"
               },
               "card": {
-                "url": null,
-                "width": null,
-                "height": null,
-                "mimeType": null,
-                "filesize": null,
-                "filename": null
+                "url": "/media/IMG-9628-800x1067.webp",
+                "width": 800,
+                "height": 1067,
+                "mimeType": "image/webp",
+                "filesize": 113272,
+                "filename": "IMG-9628-800x1067.webp"
               },
               "full": {
-                "url": null,
-                "width": null,
-                "height": null,
-                "mimeType": null,
-                "filesize": null,
-                "filename": null
+                "url": "/media/IMG-9628.webp",
+                "width": 1800,
+                "height": 2400,
+                "mimeType": "image/webp",
+                "filename": "IMG-9628.webp"
               }
             },
             "id": "6a9c29b134de8d6e62758bbb"
@@ -978,7 +976,7 @@
                 "width": 800,
                 "height": 1067,
                 "mimeType": "image/webp",
-                "filesize": 184646,
+                "filesize": 153180,
                 "filename": "68971377400--30AF01FF-B041-40A3-BDD8-08C4FDD382FA-1-800x1067.webp"
               },
               "full": {
@@ -1009,7 +1007,7 @@
                 "width": 400,
                 "height": 533,
                 "mimeType": "image/webp",
-                "filesize": 54368,
+                "filesize": 48632,
                 "filename": "IMG-6441-400x533.webp"
               },
               "card": {
@@ -1017,7 +1015,7 @@
                 "width": 800,
                 "height": 1067,
                 "mimeType": "image/webp",
-                "filesize": 217460,
+                "filesize": 145908,
                 "filename": "IMG-6441-800x1067.webp"
               },
               "full": {
@@ -1056,7 +1054,7 @@
                 "width": 800,
                 "height": 1067,
                 "mimeType": "image/webp",
-                "filesize": 155986,
+                "filesize": 129506,
                 "filename": "70550442849--912EF842-C121-4CDA-82E1-DA012310AA9E-1-800x1067.webp"
               },
               "full": {
@@ -1204,7 +1202,7 @@
                 "width": 400,
                 "height": 533,
                 "mimeType": "image/webp",
-                "filesize": 58092,
+                "filesize": 46172,
                 "filename": "IMG-6447-400x533.webp"
               },
               "card": {
@@ -1212,7 +1210,7 @@
                 "width": 800,
                 "height": 1067,
                 "mimeType": "image/webp",
-                "filesize": 243062,
+                "filesize": 150544,
                 "filename": "IMG-6447-800x1067.webp"
               },
               "full": {
@@ -1553,28 +1551,27 @@
             "height": 2400,
             "sizes": {
               "thumb": {
-                "url": null,
-                "width": null,
-                "height": null,
-                "mimeType": null,
-                "filesize": null,
-                "filename": null
+                "url": "/media/IMG_9633-400x533.webp",
+                "width": 400,
+                "height": 533,
+                "mimeType": "image/webp",
+                "filesize": 45508,
+                "filename": "IMG_9633-400x533.webp"
               },
               "card": {
-                "url": null,
-                "width": null,
-                "height": null,
-                "mimeType": null,
-                "filesize": null,
-                "filename": null
+                "url": "/media/IMG_9633-800x1067.webp",
+                "width": 800,
+                "height": 1067,
+                "mimeType": "image/webp",
+                "filesize": 149016,
+                "filename": "IMG_9633-800x1067.webp"
               },
               "full": {
-                "url": null,
-                "width": null,
-                "height": null,
-                "mimeType": null,
-                "filesize": null,
-                "filename": null
+                "url": "/media/IMG_9633.webp",
+                "width": 1800,
+                "height": 2400,
+                "mimeType": "image/webp",
+                "filename": "IMG_9633.webp"
               }
             },
             "id": "6a9c29b134de8d6e62758bcc"
@@ -1597,7 +1594,7 @@
                 "width": 400,
                 "height": 533,
                 "mimeType": "image/webp",
-                "filesize": 52230,
+                "filesize": 46512,
                 "filename": "IMG_9667-1-400x533.webp"
               },
               "card": {
@@ -1605,7 +1602,7 @@
                 "width": 800,
                 "height": 1067,
                 "mimeType": "image/webp",
-                "filesize": 185586,
+                "filesize": 153194,
                 "filename": "IMG_9667-1-800x1067.webp"
               },
               "full": {
@@ -1714,7 +1711,7 @@
                 "width": 400,
                 "height": 533,
                 "mimeType": "image/webp",
-                "filesize": 54298,
+                "filesize": 48694,
                 "filename": "IMG_9661-1-400x533.webp"
               },
               "card": {
@@ -1722,7 +1719,7 @@
                 "width": 800,
                 "height": 1067,
                 "mimeType": "image/webp",
-                "filesize": 193738,
+                "filesize": 142484,
                 "filename": "IMG_9661-1-800x1067.webp"
               },
               "full": {
@@ -1792,7 +1789,7 @@
                 "width": 400,
                 "height": 533,
                 "mimeType": "image/webp",
-                "filesize": 59066,
+                "filesize": 46450,
                 "filename": "IMG_9671-1-400x533.webp"
               },
               "card": {
@@ -1800,7 +1797,7 @@
                 "width": 800,
                 "height": 1067,
                 "mimeType": "image/webp",
-                "filesize": 218286,
+                "filesize": 149746,
                 "filename": "IMG_9671-1-800x1067.webp"
               },
               "full": {
@@ -2022,28 +2019,27 @@
             "height": 2400,
             "sizes": {
               "thumb": {
-                "url": null,
-                "width": null,
-                "height": null,
-                "mimeType": null,
-                "filesize": null,
-                "filename": null
+                "url": "/media/IMG_9699-400x533.webp",
+                "width": 400,
+                "height": 533,
+                "mimeType": "image/webp",
+                "filesize": 43476,
+                "filename": "IMG_9699-400x533.webp"
               },
               "card": {
-                "url": null,
-                "width": null,
-                "height": null,
-                "mimeType": null,
-                "filesize": null,
-                "filename": null
+                "url": "/media/IMG_9699-800x1067.webp",
+                "width": 800,
+                "height": 1067,
+                "mimeType": "image/webp",
+                "filesize": 124936,
+                "filename": "IMG_9699-800x1067.webp"
               },
               "full": {
-                "url": null,
-                "width": null,
-                "height": null,
-                "mimeType": null,
-                "filesize": null,
-                "filename": null
+                "url": "/media/IMG_9699.webp",
+                "width": 1800,
+                "height": 2400,
+                "mimeType": "image/webp",
+                "filename": "IMG_9699.webp"
               }
             },
             "id": "6a9c29b134de8d6e62758bd8"
@@ -2347,7 +2343,7 @@
                 "width": 800,
                 "height": 1067,
                 "mimeType": "image/webp",
-                "filesize": 186484,
+                "filesize": 135708,
                 "filename": "IMG_9695-1-800x1067.webp"
               },
               "full": {
