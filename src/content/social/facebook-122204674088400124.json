@@ -1,0 +1,28 @@
+{
+  "platform": "facebook",
+  "post_id": "122204674088400124",
+  "url": "https://www.facebook.com/permalink.php?story_fbid=pfbid05sJZVJhBMC75uPPfyn4UNz8Keq7NeTRKpWD4t5HdX6PCwvg5vL94gVS77HJ7PXv5l&id=61562003723548",
+  "date": "2026-10-29",
+  "text": "Annual pumpkin contest!\nI’m blown away!",
+  "images": [
+    {
+      "id": "facebook-122204674088400124-1",
+      "url": "/media/social/facebook-122204674088400124-1.webp",
+      "alt": "Pumpkin contest entry: a pumpkin painted blue as Violet Beauregarde, with doll arms and legs, holding a golden ticket",
+      "width": 443,
+      "height": 590,
+      "sizes": {
+        "thumb": {
+          "url": "/media/social/facebook-122204674088400124-1-400w.webp",
+          "width": 400,
+          "height": 533
+        },
+        "card": {
+          "url": "/media/social/facebook-122204674088400124-1.webp",
+          "width": 443,
+          "height": 590
+        }
+      }
+    }
+  ]
+}

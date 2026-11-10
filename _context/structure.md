@@ -169,7 +169,7 @@ Entries (0):
 
 - `src/assets/media/` — 0 files: (none)
 - `src/assets/files/` — 0 files: (none)
-- `public/media/` — 177 files (CMS export; referenced as /media/<file>)
+- `public/media/` — 178 files (CMS export; referenced as /media/<file>)
 
 ## Schema versions
 
