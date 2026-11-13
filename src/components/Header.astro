@@ -57,38 +57,39 @@ const isActive = (href: string) =>
       </svg>
     </button>
   </div>
+</header>
 
-  <div id="mobile-menu" class="fixed inset-0 z-50 hidden lg:hidden">
-    <div id="menu-backdrop" class="fixed inset-0 bg-ink/50 backdrop-blur-sm"></div>
-    <div class="fixed inset-y-0 right-0 w-full max-w-sm bg-cream px-6 py-6 shadow-lg">
-      <div class="mb-8 flex items-center justify-between">
-        <img src="/images/hero.png" alt="Pathway Academy" class="h-12 w-auto" />
-        <button id="menu-close" class="rounded-full p-2 text-ink hover:bg-sand" aria-label="Close menu">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="size-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-      <nav class="flex flex-col gap-2" aria-label="Mobile">
-        {
-          nav.map((item) => (
-            <a href={item.href} class="rounded-full px-4 py-3 text-base font-bold text-ink hover:bg-sand">
-              {item.label}
-            </a>
-          ))
-        }
-      </nav>
-      <div class="mt-8 border-t border-sand-line pt-8">
-        <a
-          href="/#contact"
-          class="flex items-center justify-center rounded-full bg-brand-600 px-4 py-3 font-extrabold text-white shadow-[0_2px_0_var(--color-brand-800)] hover:bg-brand-700"
-        >
-          Come Visit Us
-        </a>
-      </div>
+<!-- Outside <header>: its backdrop-blur makes it the containing block for position:fixed, so the menu would only cover the header bar (BUG-01). -->
+<div id="mobile-menu" class="fixed inset-0 z-50 hidden lg:hidden">
+  <div id="menu-backdrop" class="fixed inset-0 bg-ink/50 backdrop-blur-sm"></div>
+  <div class="fixed inset-y-0 right-0 w-full max-w-sm bg-cream px-6 py-6 shadow-lg">
+    <div class="mb-8 flex items-center justify-between">
+      <img src="/images/hero.png" alt="Pathway Academy" class="h-12 w-auto" />
+      <button id="menu-close" class="rounded-full p-2 text-ink hover:bg-sand" aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <nav class="flex flex-col gap-2" aria-label="Mobile">
+      {
+        nav.map((item) => (
+          <a href={item.href} class="rounded-full px-4 py-3 text-base font-bold text-ink hover:bg-sand">
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="mt-8 border-t border-sand-line pt-8">
+      <a
+        href="/#contact"
+        class="flex items-center justify-center rounded-full bg-brand-600 px-4 py-3 font-extrabold text-white shadow-[0_2px_0_var(--color-brand-800)] hover:bg-brand-700"
+      >
+        Come Visit Us
+      </a>
     </div>
   </div>
-</header>
+</div>
 
 <script>
   const menu = document.getElementById('mobile-menu')
