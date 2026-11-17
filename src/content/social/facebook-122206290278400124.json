@@ -1,0 +1,28 @@
+{
+  "platform": "facebook",
+  "post_id": "122206290278400124",
+  "url": "https://www.facebook.com/permalink.php?story_fbid=pfbid0EnXTw2EcpXvTs4PCCBEEf4xtXV928F1FvE3gAMcSsmcUoJMEZC2FSJzpV1mrGByDl&id=61562003723548",
+  "date": "2026-11-12",
+  "text": "Incredible field trip to see the stained glass at Church of the Resurrection!\nAbsolutely beautiful and the tour by a dear friend made it even more special.\nThen to the library, lunch at McDonalds, and reading time back at school with these eager readers",
+  "images": [
+    {
+      "id": "facebook-122206290278400124-1",
+      "url": "/media/social/facebook-122206290278400124-1.webp",
+      "alt": "A tour guide talks with a group of students in the bright lobby of Church of the Resurrection.",
+      "width": 590,
+      "height": 443,
+      "sizes": {
+        "thumb": {
+          "url": "/media/social/facebook-122206290278400124-1-400w.webp",
+          "width": 400,
+          "height": 300
+        },
+        "card": {
+          "url": "/media/social/facebook-122206290278400124-1.webp",
+          "width": 590,
+          "height": 443
+        }
+      }
+    }
+  ]
+}
