@@ -7,12 +7,16 @@ import { getFooter, getNavigation, getSeoSettings, pageTitle } from '../lib/payl
 interface Props {
   title?: string
   description?: string
+  /** Keep this page out of search (the contact form's confirmation). */
+  noindex?: boolean
 }
 
-const { title, description } = Astro.props
+const { title, description, noindex = false } = Astro.props
 const [nav, footer, seo] = await Promise.all([getNavigation(), getFooter(), getSeoSettings()])
 const fullTitle = pageTitle(title, seo)
 const metaDescription = description ?? seo?.defaultDescription ?? ''
+// One address per page for search engines: the live domain, whatever host served this copy.
+const canonical = new URL(Astro.url.pathname, Astro.site).href
 ---
 
 <!doctype html>
@@ -22,9 +26,14 @@ const metaDescription = description ?? seo?.defaultDescription ?? ''
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     {metaDescription && <meta name="description" content={metaDescription} />}
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={fullTitle} />
     {metaDescription && <meta property="og:description" content={metaDescription} />}
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // Content is files in src/content/ (see src/lib/payload.ts); media in public/media/.
 export default defineConfig({
-  site: 'https://pathway-academy.netlify.app',
+  site: 'https://pathwayacademymicro.com',
   output: 'static',
   vite: { plugins: [tailwindcss()] },
 })
