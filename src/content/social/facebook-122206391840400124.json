@@ -1,0 +1,28 @@
+{
+  "platform": "facebook",
+  "post_id": "122206391840400124",
+  "url": "https://www.facebook.com/permalink.php?story_fbid=pfbid02bBhymW8mM3mjMeMizZ6E5afYbxCVEQPAdjT2QqUpMrTWAkPZnqg9eAM21Q7AHogfl&id=61562003723548",
+  "date": "2026-11-13",
+  "text": "There are so many things I love about teaching at Pathway Academy. I love seeing my students thrive in a safe, stress free environment. I marvel at the ways they excel \u2026 See more",
+  "images": [
+    {
+      "id": "facebook-122206391840400124-1",
+      "url": "/media/social/facebook-122206391840400124-1.webp",
+      "alt": "Two teachers stand with eight smiling students, dressed up for a group photo under autumn trees.",
+      "width": 590,
+      "height": 392,
+      "sizes": {
+        "thumb": {
+          "url": "/media/social/facebook-122206391840400124-1-400w.webp",
+          "width": 400,
+          "height": 266
+        },
+        "card": {
+          "url": "/media/social/facebook-122206391840400124-1.webp",
+          "width": 590,
+          "height": 392
+        }
+      }
+    }
+  ]
+}
